@@ -30,5 +30,25 @@ see package to see complete artifact list
 in dockerfile change
 >RUN mvn -f /sources/pom.xml clean install --> RUN mvn -f /sources/pom.xml clean install -s /sources/settings.xml
 
-add this file to project root
+add settings.xml file to project root
 >https://github.com/solusinegeri/backend-authentication/blob/main/settings.xml
+
+## add in pom.xml
+````
+<repository>
+      <id>solusinegeri-java-lib</id>
+      <url>https://maven.pkg.github.com/solusinegeri/java-lib</url>
+      <releases>
+        <checksumPolicy>ignore</checksumPolicy>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+````
+
+
+## for run in local
+>add settings.xml into home/.m2/
+
