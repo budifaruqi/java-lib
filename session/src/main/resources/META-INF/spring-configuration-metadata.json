@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "abinarystar.session",
+      "type": "com.solusinegeri.session.properties.SessionProperties",
+      "sourceType": "com.solusinegeri.session.properties.SessionProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "abinarystar.session.password-encoder-strength",
+      "type": "java.lang.Integer",
+      "sourceType": "com.solusinegeri.session.properties.SessionProperties",
+      "defaultValue": -1
+    }
+  ],
+  "hints": []
+}

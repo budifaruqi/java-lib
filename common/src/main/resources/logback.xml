@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+  <logger name="org.springdoc.api.AbstractOpenApiResource" level="ERROR"/>
+  <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="ERROR"/>
+  <logger name="org.springframework.web.servlet.PageNotFound" level="ERROR"/>
+</configuration>

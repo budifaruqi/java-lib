@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solusinegeri.kafka.autoconfigure.ReactiveKafkaAutoConfiguration,\
+  com.solusinegeri.kafka.autoconfigure.ServletKafkaAutoConfiguration

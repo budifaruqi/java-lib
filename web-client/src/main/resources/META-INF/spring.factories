@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solusinegeri.web_client.autoconfigure.WebClientAutoConfiguration

@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "abinarystar.web.client",
+      "type": "com.solusinegeri.web_client.properties.WebClientProperties",
+      "sourceType": "com.solusinegeri.web_client.properties.WebClientProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "abinarystar.web.client.config",
+      "type": "java.util.Map<java.lang.String,com.solusinegeri.web.client.properties.WebClientProperties$ClientConfig>",
+      "sourceType": "com.solusinegeri.web_client.properties.WebClientProperties"
+    }
+  ],
+  "hints": []
+}

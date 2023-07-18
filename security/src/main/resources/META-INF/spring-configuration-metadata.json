@@ -1,0 +1,46 @@
+{
+  "groups": [
+    {
+      "name": "abinarystar.security",
+      "type": "com.solusinegeri.security.properties.SecurityProperties",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "abinarystar.security.cookie-domain",
+      "type": "java.lang.String",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties"
+    },
+    {
+      "name": "abinarystar.security.cookie-max-age",
+      "type": "java.time.Duration",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties",
+      "defaultValue": "-1s"
+    },
+    {
+      "name": "abinarystar.security.cookie-path",
+      "type": "java.lang.String",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties",
+      "defaultValue": "\/"
+    },
+    {
+      "name": "abinarystar.security.cookie-same-site",
+      "type": "java.lang.String",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties",
+      "defaultValue": "Lax"
+    },
+    {
+      "name": "abinarystar.security.cookie-session-key",
+      "type": "java.lang.String",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties",
+      "defaultValue": "sessionId"
+    },
+    {
+      "name": "abinarystar.security.token-source",
+      "type": "java.lang.String",
+      "sourceType": "com.solusinegeri.security.properties.SecurityProperties"
+    }
+  ],
+  "hints": []
+}

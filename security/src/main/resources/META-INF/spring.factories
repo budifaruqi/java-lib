@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
+  com.solusinegeri.security.importfilter.SecurityImportFilter
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solusinegeri.security.autoconfigure.ReactiveSecurityAutoConfiguration,\
+  com.solusinegeri.security.autoconfigure.SecurityAutoConfiguration,\
+  com.solusinegeri.security.autoconfigure.ServletSecurityAutoConfiguration

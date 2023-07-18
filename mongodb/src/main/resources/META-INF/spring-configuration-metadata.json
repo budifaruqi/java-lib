@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "abinarystar.data.mongodb",
+      "type": "com.solusinegeri.mongodb.properties.MongoDbProperties",
+      "sourceType": "com.solusinegeri.mongodb.properties.MongoDbProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "abinarystar.data.mongodb.transactional-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.solusinegeri.mongodb.properties.MongoDbProperties",
+      "defaultValue": true
+    }
+  ],
+  "hints": []
+}

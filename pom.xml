@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.solusinegeri</groupId>
+  <artifactId>java-lib</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>lib</name>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.8</version>
+  </parent>
+
+  <modules>
+    <module>aws-storage</module>
+    <!--    <module>spring</module>-->
+    <module>command</module>
+    <module>common</module>
+    <module>data</module>
+    <module>mongodb</module>
+    <module>kafka</module>
+    <module>security</module>
+    <module>session</module>
+    <module>swagger</module>
+    <module>test</module>
+    <module>validation</module>
+    <module>web</module>
+    <module>web-client</module>
+  </modules>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com/solusinegeri/java-lib.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/solusinegeri/java-lib.git</developerConnection>
+    <url>https://github.com/solusinegeri/java-lib</url>
+  </scm>
+
+  <!--  <distributionManagement>-->
+  <!--    <repository>-->
+  <!--      <id>abinarystar-maven-release</id>-->
+  <!--      <url>https://abinarystar.jfrog.io/artifactory/abinarystar-maven-release</url>-->
+  <!--    </repository>-->
+  <!--    <snapshotRepository>-->
+  <!--      <id>abinarystar-maven-snapshot</id>-->
+  <!--      <url>https://abinarystar.jfrog.io/artifactory/abinarystar-maven-snapshot</url>-->
+  <!--    </snapshotRepository>-->
+  <!--  </distributionManagement>-->
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>java lib solusinegeri GitHub Package Registry</name>
+      <url>https://maven.pkg.github.com/solusinegeri/java-lib</url>
+    </repository>
+  </distributionManagement>
+  <profiles>
+    <profile>
+      <id>github</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <maven.deploy.username>${github.username}</maven.deploy.username>
+        <maven.deploy.password>${github.token}</maven.deploy.password>
+      </properties>
+    </profile>
+  </profiles>
+  <properties>
+    <!-- java properties -->
+    <java.version>11</java.version>
+    <!-- sonar properties -->
+    <sonar.exclusions>
+      **/data/**,
+      **/enumeration/**,
+      **/model/**,
+      **/properties/**,
+      **/*Application.java
+    </sonar.exclusions>
+    <!-- version properties -->
+    <!--    <abinarystar-spring.version>0.5.13</abinarystar-spring.version>-->
+    <!--    <abinarystar-spring-migration.version>0.5.13</abinarystar-spring-migration.version>-->
+    <apache-commons-collections.version>4.4</apache-commons-collections.version>
+    <apache-commons-io.version>2.11.0</apache-commons-io.version>
+    <google-api-client.version>1.32.2</google-api-client.version>
+    <google-cloud-bigquery.version>2.5.1</google-cloud-bigquery.version>
+    <google-firebase-admin.version>8.1.0</google-firebase-admin.version>
+    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+    <java-otp.version>0.3.1</java-otp.version>
+    <jjwt-api.version>0.11.2</jjwt-api.version>
+    <spring-cloud-aws-dependencies.version>2.3.2</spring-cloud-aws-dependencies.version>
+    <spring-cloud-dependencies.version>2020.0.4</spring-cloud-dependencies.version>
+    <springdoc.version>1.6.2</springdoc.version>
+    <swagger-core.version>2.1.11</swagger-core.version>
+    <github.username>devprojecttki</github.username>
+    <github.token>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</github.token>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- abinarystar dependencies -->
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>aws-storage</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>command</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>data</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>mongodb</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>kafka</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>security</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>session</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>swagger</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>test</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>validation</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>web</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.solusinegeri</groupId>
+        <artifactId>web-client</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+      <!-- spring framework dependencies -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- third party dependencies -->
+      <dependency>
+        <groupId>com.eatthepath</groupId>
+        <artifactId>java-otp</artifactId>
+        <version>${java-otp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.api-client</groupId>
+        <artifactId>google-api-client</artifactId>
+        <version>${google-api-client.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>google-cloud-bigquery</artifactId>
+        <version>${google-cloud-bigquery.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.firebase</groupId>
+        <artifactId>firebase-admin</artifactId>
+        <version>${google-firebase-admin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${apache-commons-io.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.awspring.cloud</groupId>
+        <artifactId>spring-cloud-aws-dependencies</artifactId>
+        <version>${spring-cloud-aws-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-api</artifactId>
+        <version>${jjwt-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-jackson</artifactId>
+        <version>${jjwt-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-impl</artifactId>
+        <version>${jjwt-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${swagger-core.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>${apache-commons-collections.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        <version>${springdoc.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build-info</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+
+  </build>
+
+</project>

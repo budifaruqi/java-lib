@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solusinegeri.mongodb.autoconfigure.MongoDbAutoConfiguration,\
+  com.solusinegeri.mongodb.autoconfigure.ReactiveMongoDbAutoConfiguration,\
+  com.solusinegeri.mongodb.autoconfigure.ServletMongoDbAutoConfiguration

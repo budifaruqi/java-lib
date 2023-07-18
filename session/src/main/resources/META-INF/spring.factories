@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solusinegeri.session.autoconfigure.ReactiveSessionAutoConfiguration,\
+  com.solusinegeri.session.autoconfigure.ServletSessionAutoConfiguration,\
+  com.solusinegeri.session.autoconfigure.SessionAutoConfiguration
