@@ -7,7 +7,8 @@ parent dependency
   <version>0.0.1</version>
 </dependency> 
 ```
-dependecy change
+dependecy change.
+change all abinarystar dependency
 ````
 <dependency>
   <groupId>com.abinarystar.spring</groupId>
