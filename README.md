@@ -50,5 +50,5 @@ add settings.xml file to project root
 
 
 ## for run in local
->add settings.xml into home/.m2/
+>add settings.xml into home/{user}/.m2/
 
