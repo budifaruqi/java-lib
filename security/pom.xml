@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.solusinegeri</groupId>
     <artifactId>java-lib</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
 
   <artifactId>security</artifactId>
@@ -16,12 +16,12 @@
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>common</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.1</version>
     </dependency>
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>session</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.1</version>
     </dependency>
     <!-- spring framework dependencies -->
     <dependency>

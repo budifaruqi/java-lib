@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.solusinegeri</groupId>
     <artifactId>java-lib</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
 
   <artifactId>test</artifactId>
@@ -16,19 +16,19 @@
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>command</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>kafka</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>security</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>0.0.1</version>
       <scope>provided</scope>
     </dependency>
     <!-- spring framework dependencies -->

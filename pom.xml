@@ -5,7 +5,7 @@
 
   <groupId>com.solusinegeri</groupId>
   <artifactId>java-lib</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>pom</packaging>
   <name>lib</name>
 
@@ -54,20 +54,15 @@
       <id>github</id>
       <name>java lib solusinegeri GitHub Package Registry</name>
       <url>https://maven.pkg.github.com/solusinegeri/java-lib</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
     </repository>
   </distributionManagement>
-  <profiles>
-    <profile>
-      <id>github</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <maven.deploy.username>${github.username}</maven.deploy.username>
-        <maven.deploy.password>${github.token}</maven.deploy.password>
-      </properties>
-    </profile>
-  </profiles>
+
   <properties>
     <!-- java properties -->
     <java.version>11</java.version>
@@ -94,8 +89,6 @@
     <spring-cloud-dependencies.version>2020.0.4</spring-cloud-dependencies.version>
     <springdoc.version>1.6.2</springdoc.version>
     <swagger-core.version>2.1.11</swagger-core.version>
-    <github.username>devprojecttki</github.username>
-    <github.token>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</github.token>
   </properties>
 
   <dependencyManagement>
@@ -104,67 +97,67 @@
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>aws-storage</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>command</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>common</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>data</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>mongodb</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>kafka</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>security</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>session</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>swagger</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>test</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>validation</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>web</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>web-client</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
       <!-- spring framework dependencies -->
       <dependency>
