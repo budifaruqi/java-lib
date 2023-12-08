@@ -33,9 +33,9 @@
   </modules>
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/solusinegeri/java-lib.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/solusinegeri/java-lib.git</developerConnection>
-    <url>https://github.com/solusinegeri/java-lib</url>
+    <connection>scm:git:ssh://git@github.com/budifaruqi/java-lib.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/budifaruqi/java-lib.git</developerConnection>
+    <url>https://github.com/budifaruqi/java-lib</url>
   </scm>
 
   <!--  <distributionManagement>-->
@@ -52,8 +52,8 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>java lib solusinegeri GitHub Package Registry</name>
-      <url>https://maven.pkg.github.com/solusinegeri/java-lib</url>
+      <name>java lib seventekno GitHub Package Registry</name>
+      <url>https://maven.pkg.github.com/budifaruqi/java-lib</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
