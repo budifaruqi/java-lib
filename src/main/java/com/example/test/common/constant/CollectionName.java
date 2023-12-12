@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CollectionName {
 
+  public static final String BOM = "boms";
+
   public static final String BRAND = "brands";
 
   public static final String CATEGORY = "categories";
@@ -19,4 +21,6 @@ public final class CollectionName {
   public static final String PRODUCT_CATEGORY = "product_categories";
 
   public static final String PRODUCT_STOCK = "product_stocks";
+
+  public static final String TRANSACTION = "transactions";
 }

@@ -59,7 +59,7 @@ public class ProductController extends BaseController {
   @GetMapping
   public Mono<Response<List<GetProductWebResponse>>> getAllProduct(@RequestParam(required = false) String name,
       @RequestParam(required = false) String code, @RequestParam(required = false) String sku,
-      @RequestParam(required = false) String categoryId, @RequestParam String brandId,
+      @RequestParam(required = false) String categoryId, @RequestParam(required = false) String brandId,
       @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size,
       @RequestParam(defaultValue = "-createdDate") String sortBy) {
     GetProductCommandRequest commandRequest = GetProductCommandRequest.builder()

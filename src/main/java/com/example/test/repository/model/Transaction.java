@@ -1,22 +1,23 @@
 package com.example.test.repository.model;
 
-
 import com.example.test.common.constant.CollectionName;
 import com.solusinegeri.data.model.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = CollectionName.CATEGORY)
+@Document(collection = CollectionName.TRANSACTION)
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Category extends BaseEntity {
+public class Transaction extends BaseEntity {
 
-    @Id
-    private String id;
-
-    private String name;
+  @Id
+  private String id;
 }

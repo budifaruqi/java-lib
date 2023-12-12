@@ -56,7 +56,7 @@ public class ProductCategoryController extends BaseController {
   @GetMapping
   public Mono<Response<List<GetProductCategoryWebResponse>>> getAllProductCategory(
       @RequestParam(required = false) String name, @RequestParam(required = false) ProductType type,
-      @RequestParam Boolean isDevice, @RequestParam(defaultValue = "1") int page,
+      @RequestParam(required = false) Boolean isDevice, @RequestParam(defaultValue = "1") int page,
       @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "-createdDate") String sortBy) {
     GetAllProductCategoryCommandRequest commandRequest = GetAllProductCategoryCommandRequest.builder()
         .name(name)

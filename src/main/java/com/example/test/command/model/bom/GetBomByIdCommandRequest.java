@@ -1,4 +1,4 @@
-package com.example.test.web.model.response.category;
+package com.example.test.command.model.bom;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetCategoryWebResponse {
+public class GetBomByIdCommandRequest {
 
   private String id;
-
-  private String name;
 }
