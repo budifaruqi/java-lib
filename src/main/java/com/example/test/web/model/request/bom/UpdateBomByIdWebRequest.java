@@ -14,5 +14,9 @@ import java.util.List;
 @Builder
 public class UpdateBomByIdWebRequest {
 
+  private String productId;
+
+  private String name;
+
   private List<MaterialVO> materialList;
 }

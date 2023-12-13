@@ -24,6 +24,8 @@ public class Bom extends BaseEntity {
   @Id
   private String id;
 
+  private String name;
+
   private String productId;
 
   private List<MaterialVO> materialList;

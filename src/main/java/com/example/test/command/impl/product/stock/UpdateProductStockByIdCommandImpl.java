@@ -3,6 +3,7 @@ package com.example.test.command.impl.product.stock;
 import com.example.test.command.model.product.stock.UpdateProductStockByIdCommandRequest;
 import com.example.test.command.product.stock.UpdateProductStockByIdCommand;
 import com.example.test.common.constant.ErrorCode;
+import com.example.test.repository.ProductRepository;
 import com.example.test.repository.ProductStockRepository;
 import com.example.test.repository.model.ProductStock;
 import com.example.test.web.model.response.product.stock.GetProductStockWebResponse;
@@ -15,8 +16,12 @@ public class UpdateProductStockByIdCommandImpl implements UpdateProductStockById
 
   private final ProductStockRepository productStockRepository;
 
-  public UpdateProductStockByIdCommandImpl(ProductStockRepository productStockRepository) {
+  private final ProductRepository productRepository;
+
+  public UpdateProductStockByIdCommandImpl(ProductStockRepository productStockRepository,
+      ProductRepository productRepository) {
     this.productStockRepository = productStockRepository;
+    this.productRepository = productRepository;
   }
 
   @Override

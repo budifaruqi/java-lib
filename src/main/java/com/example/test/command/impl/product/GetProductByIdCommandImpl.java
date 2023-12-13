@@ -71,6 +71,7 @@ public class GetProductByIdCommandImpl implements GetProductByIdCommand {
         .isActive(product.getIsActive())
         .description(product.getDescription())
         .imageUrls(product.getImageUrls())
+        .companyShare(product.getCompanyShare())
         .build();
   }
 }

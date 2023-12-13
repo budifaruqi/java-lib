@@ -10,4 +10,6 @@ public interface ProductStockRepository
   Mono<Boolean> existsByCompanyIdAndProductIdAndDeletedFalse(String companyId, String productId);
 
   Mono<ProductStock> findByDeletedFalseAndId(String id);
+
+  Mono<ProductStock> findByDeletedFalseAndCompanyIdAndProductId(String vendorId, String productId);
 }

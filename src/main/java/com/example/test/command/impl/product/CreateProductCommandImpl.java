@@ -66,9 +66,10 @@ public class CreateProductCommandImpl implements CreateProductCommand {
         .code(request.getCode())
         .sku(request.getSku())
         .unitOfMeasure(request.getUnitOfMeasure())
+        .isActive(Boolean.TRUE)
         .description(request.getDescription())
         .imageUrls(request.getImageUrls())
-        .isActive(Boolean.TRUE)
+        .companyShare(request.getCompanyShare())
         .build();
   }
 }

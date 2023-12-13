@@ -1,6 +1,8 @@
 package com.example.test.repository.model;
 
 import com.example.test.common.constant.CollectionName;
+import com.example.test.common.enums.PRStatus;
+import com.example.test.common.vo.ProductRequest;
 import com.solusinegeri.data.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,34 +14,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = CollectionName.PRODUCT)
+@Document(collection = CollectionName.PURCHASE_REQUEST)
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Product extends BaseEntity {
+public class PurchaseRequest extends BaseEntity {
 
   @Id
   private String id;
 
-  private String categoryId;
+  private String customerId;
 
-  private String brandId;
+  private String vendorId;
 
-  private String name;
+  private List<ProductRequest> productList;
 
-  private String code;
+  private Long amountTotal;
 
-  private String sku;
+  private PRStatus status;
 
-  private String unitOfMeasure;
-
-  private Boolean isActive;
-
-  private String description;
-
-  private List<String> imageUrls;
-
-  private List<String> companyShare;
+  private String note;
 }

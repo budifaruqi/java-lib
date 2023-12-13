@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateProductStockWebRequest {
 
+  private String companyId;
+
   private String productId;
 
   private Long stock;

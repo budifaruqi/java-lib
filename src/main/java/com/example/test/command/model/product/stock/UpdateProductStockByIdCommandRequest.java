@@ -17,6 +17,9 @@ import javax.validation.constraints.NotNull;
 public class UpdateProductStockByIdCommandRequest {
 
   @NotBlank
+  private String companyId;
+
+  @NotBlank
   private String id;
 
   @NotNull

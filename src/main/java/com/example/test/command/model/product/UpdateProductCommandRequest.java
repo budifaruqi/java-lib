@@ -42,4 +42,6 @@ public class UpdateProductCommandRequest {
   private String description;
 
   private List<String> imageUrls;
+
+  private List<String> companyShare;
 }

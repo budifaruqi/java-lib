@@ -34,7 +34,7 @@ public class UpdateBomCommandImpl implements UpdateBomCommand {
         .flatMap(bom -> Flux.fromIterable(request.getMaterialList())
             .flatMap(this::checkMaterial)
             .collectList()
-            .map(materialVOS -> updateBom(bom, materialVOS))
+            .map(materialVOS -> updateBom(bom, materialVOS, request))
             .flatMap(bomRepository::save))
         .map(this::toGetWebResponse);
   }
@@ -56,7 +56,9 @@ public class UpdateBomCommandImpl implements UpdateBomCommand {
     return materialVO;
   }
 
-  private Bom updateBom(Bom bom, List<MaterialVO> materialVOS) {
+  private Bom updateBom(Bom bom, List<MaterialVO> materialVOS, UpdateBomCommandRequest request) {
+    bom.setProductId(request.getProductId());
+    bom.setName(request.getName());
     bom.setMaterialList(materialVOS);
 
     return bom;

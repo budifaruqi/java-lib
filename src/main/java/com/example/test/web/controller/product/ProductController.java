@@ -50,6 +50,7 @@ public class ProductController extends BaseController {
         .unitOfMeasure(request.getUnitOfMeasure())
         .description(request.getDescription())
         .imageUrls(request.getImageUrls())
+        .companyShare(request.getCompanyShare())
         .build();
 
     return executor.execute(CreateProductCommand.class, commandRequest)
@@ -99,6 +100,7 @@ public class ProductController extends BaseController {
         .isActive(request.getIsActive())
         .description(request.getDescription())
         .imageUrls(request.getImageUrls())
+        .companyShare(request.getCompanyShare())
         .build();
 
     return executor.execute(UpdateProductCommand.class, commandRequest)

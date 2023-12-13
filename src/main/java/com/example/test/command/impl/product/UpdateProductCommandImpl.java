@@ -76,6 +76,7 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
     product.setIsActive(request.getIsActive());
     product.setDescription(request.getDescription());
     product.setImageUrls(request.getImageUrls());
+    product.setCompanyShare(request.getCompanyShare());
 
     return product;
   }
@@ -94,6 +95,7 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
         .isActive(product.getIsActive())
         .description(product.getDescription())
         .imageUrls(product.getImageUrls())
+        .companyShare(product.getCompanyShare())
         .build();
   }
 }

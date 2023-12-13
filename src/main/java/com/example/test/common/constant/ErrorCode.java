@@ -30,7 +30,11 @@ public final class ErrorCode {
 
   public static final String PRODUCT_NOT_EXIST = "PRODUCT_NOT_EXIST";
 
+  public static final String PRODUCT_QUANTITY_NOT_EXIST = "PRODUCT_QUANTITY_NOT_EXIST";
+
   public static final String PRODUCT_STOCK_ALREADY_EXISTS = "PRODUCT_STOCK_ALREADY_EXISTS";
+
+  public static final String PRODUCT_STOCK_NOT_ENOUGH = "PRODUCT_STOCK_NOT_ENOUGH";
 
   public static final String PRODUCT_STOCK_NOT_EXIST = "PRODUCT_STOCK_NOT_EXIST";
 }

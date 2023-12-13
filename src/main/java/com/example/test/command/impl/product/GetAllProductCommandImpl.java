@@ -85,6 +85,7 @@ public class GetAllProductCommandImpl implements GetAllProductCommand {
         .isActive(product.getIsActive())
         .description(product.getDescription())
         .imageUrls(product.getImageUrls())
+        .companyShare(product.getCompanyShare())
         .build();
   }
 

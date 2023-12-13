@@ -22,5 +22,7 @@ public final class CollectionName {
 
   public static final String PRODUCT_STOCK = "product_stocks";
 
+  public static final String PURCHASE_REQUEST = "purchase_requests";
+
   public static final String TRANSACTION = "transactions";
 }

@@ -35,4 +35,6 @@ public class CreateProductCommandRequest {
   private String description;
 
   private List<String> imageUrls;
+
+  private List<String> companyShare;
 }

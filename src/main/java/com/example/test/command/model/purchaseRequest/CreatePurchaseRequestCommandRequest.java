@@ -1,6 +1,6 @@
-package com.example.test.command.model.bom;
+package com.example.test.command.model.purchaseRequest;
 
-import com.example.test.common.vo.MaterialVO;
+import com.example.test.common.vo.ProductRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,18 +15,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UpdateBomCommandRequest {
+public class CreatePurchaseRequestCommandRequest {
 
   @NotBlank
-  private String id;
+  private String customerId;
 
   @NotBlank
-  private String productId;
-
-  @NotBlank
-  private String name;
+  private String vendorId;
 
   @NotEmpty
   @Valid
-  private List<MaterialVO> materialList;
+  private List<ProductRequest> productList;
+
+  private String note;
 }

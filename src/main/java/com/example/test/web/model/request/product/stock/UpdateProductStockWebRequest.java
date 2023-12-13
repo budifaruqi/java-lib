@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UpdateProductStockWebRequest {
 
+  private String companyId;
+
   private Long stock;
 
   private Long hpp;

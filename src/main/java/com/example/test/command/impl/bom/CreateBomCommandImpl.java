@@ -8,6 +8,7 @@ import com.example.test.repository.BomRepository;
 import com.example.test.repository.ProductRepository;
 import com.example.test.repository.model.Bom;
 import com.example.test.repository.model.Product;
+import com.example.test.web.model.response.bom.GetBomWebResponse;
 import com.solusinegeri.validation.model.exception.ValidationException;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -34,8 +35,9 @@ public class CreateBomCommandImpl implements CreateBomCommand {
             .flatMap(product1 -> Flux.fromIterable(request.getMaterialList())
                 .flatMap(this::checkMaterial)
                 .collectList())
-            .map(materials -> toBom(product, materials))
-            .flatMap(bomRepository::save));
+            .map(materials -> toBom(request, product, materials))
+            .flatMap(bomRepository::save)
+            .map(s -> toGetWebResponse(s)));
   }
 
   private Mono<Boolean> checkExist(CreateBomCommandRequest request) {
@@ -59,10 +61,19 @@ public class CreateBomCommandImpl implements CreateBomCommand {
     return materialVO;
   }
 
-  private Bom toBom(Product product, List<MaterialVO> materials) {
+  private Bom toBom(CreateBomCommandRequest request, Product product, List<MaterialVO> materials) {
     return Bom.builder()
+        .name(request.getName())
         .productId(product.getId())
         .materialList(materials)
+        .build();
+  }
+
+  private GetBomWebResponse toGetWebResponse(Bom bom) {
+    return GetBomWebResponse.builder()
+        .id(bom.getId())
+        .productId(bom.getProductId())
+        .materialList(bom.getMaterialList())
         .build();
   }
 }

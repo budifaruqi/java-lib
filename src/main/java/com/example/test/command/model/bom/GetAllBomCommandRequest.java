@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 @Builder
 public class GetAllBomCommandRequest {
 
+  private String name;
+
   private String productId;
 
   private Pageable pageable;

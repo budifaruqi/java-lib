@@ -37,7 +37,7 @@ public class ProductStockController extends BaseController {
   @PostMapping
   public Mono<Response<Object>> createProductStock(@RequestBody CreateProductStockWebRequest request) {
     CreateProductStockCommandRequest commandRequest = CreateProductStockCommandRequest.builder()
-        .companyId("X")
+        .companyId(request.getCompanyId())
         .productId(request.getProductId())
         .stock(request.getStock())
         .hpp(request.getHpp())
@@ -68,6 +68,7 @@ public class ProductStockController extends BaseController {
   public Mono<Response<GetProductStockWebResponse>> updateProductStockById(@PathVariable String id,
       @RequestBody UpdateProductStockWebRequest request) {
     UpdateProductStockByIdCommandRequest commandRequest = UpdateProductStockByIdCommandRequest.builder()
+        .companyId(request.getCompanyId())
         .id(id)
         .stock(request.getStock())
         .hpp(request.getHpp())
