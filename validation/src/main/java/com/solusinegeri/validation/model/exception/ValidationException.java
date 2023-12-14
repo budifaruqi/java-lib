@@ -6,9 +6,9 @@ package com.solusinegeri.validation.model.exception;
 import com.solusinegeri.common.helper.ResponseHelper;
 import com.solusinegeri.common.model.exception.BaseException;
 import com.solusinegeri.validation.helper.ErrorHelper;
+import jakarta.validation.ConstraintViolation;
 import org.springframework.http.HttpStatus;
 
-import javax.validation.ConstraintViolation;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

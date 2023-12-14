@@ -1,7 +1,8 @@
 /*    */
 package com.solusinegeri.command.helper;
 
-import javax.validation.groups.Default;
+import jakarta.validation.groups.Default;
+
 import java.util.ArrayList;
 import java.util.List;
 

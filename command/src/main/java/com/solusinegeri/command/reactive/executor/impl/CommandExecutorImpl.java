@@ -6,12 +6,12 @@ import com.solusinegeri.command.reactive.Command;
 import com.solusinegeri.command.reactive.executor.CommandExecutor;
 import com.solusinegeri.common.helper.CollectionHelper;
 import com.solusinegeri.validation.model.exception.ValidationException;
+import jakarta.validation.Validator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.context.ApplicationContext;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
-import javax.validation.Validator;
 import java.util.Collections;
 import java.util.List;
 

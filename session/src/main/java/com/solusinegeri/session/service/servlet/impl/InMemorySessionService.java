@@ -5,8 +5,8 @@ package com.solusinegeri.session.service.servlet.impl;
 
 import com.solusinegeri.session.model.Session;
 import com.solusinegeri.session.service.servlet.SessionService;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

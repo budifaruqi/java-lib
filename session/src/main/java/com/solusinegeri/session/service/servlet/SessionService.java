@@ -1,8 +1,8 @@
 package com.solusinegeri.session.service.servlet;
 
 import com.solusinegeri.session.model.Session;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 public interface SessionService {

@@ -59,7 +59,8 @@ import java.util.function.Function;
   protected static Function<ClientResponse, Mono<? extends Throwable>> throw4xxException() {
     /*  46 */
     return (clientResponse) -> {
-      HttpStatus httpStatus = clientResponse.statusCode();
+      HttpStatus httpStatus = HttpStatus.valueOf(clientResponse.statusCode()
+          .value());
       if (httpStatus == HttpStatus.BAD_REQUEST) {
         return clientResponse.bodyToMono(new ParameterizedTypeReference<Response<Object>>() {})
             .map((response) -> {

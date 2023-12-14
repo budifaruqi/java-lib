@@ -1,6 +1,6 @@
 package com.solusinegeri.security.service.servlet;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface CookieService {
 

@@ -8,11 +8,11 @@ import com.solusinegeri.command.servlet.Command;
 import com.solusinegeri.command.servlet.executor.CommandExecutor;
 import com.solusinegeri.common.helper.CollectionHelper;
 import com.solusinegeri.validation.model.exception.ValidationException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.context.ApplicationContext;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;

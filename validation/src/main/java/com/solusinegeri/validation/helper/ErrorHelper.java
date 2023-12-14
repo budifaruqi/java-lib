@@ -3,12 +3,12 @@ package com.solusinegeri.validation.helper;
 /*    */
 /*    */
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;

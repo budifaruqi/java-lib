@@ -9,6 +9,7 @@ import com.solusinegeri.session.model.Session;
 import com.solusinegeri.session.service.servlet.SessionService;
 import com.solusinegeri.session.service.servlet.UserService;
 import com.solusinegeri.test.TestHelper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.ArgumentMatchers;
 import org.mockito.BDDMockito;
@@ -16,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 /*    */

@@ -3,11 +3,10 @@ package com.solusinegeri.validation.reactive;
 /*    */
 /*    */
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.BooleanUtils;
 import reactor.core.publisher.Mono;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 /*    */
 /*    */

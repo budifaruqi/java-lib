@@ -1,8 +1,8 @@
 package com.solusinegeri.security.service.servlet;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.Ordered;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 public interface TokenService extends Ordered {

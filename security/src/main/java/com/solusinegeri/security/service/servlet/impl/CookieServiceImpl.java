@@ -5,10 +5,9 @@ package com.solusinegeri.security.service.servlet.impl;
 
 import com.solusinegeri.security.properties.SecurityProperties;
 import com.solusinegeri.security.service.servlet.CookieService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 
 /*    */
 /*    */
