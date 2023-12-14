@@ -8,9 +8,13 @@ public final class CollectionName {
 
   public static final String BOM = "boms";
 
+  public static final String BOM_PRODUCTION = "bom_productions";
+
   public static final String BRAND = "brands";
 
   public static final String CATEGORY = "categories";
+
+  public static final String COMPANY = "companies";
 
   public static final String PARTNER = "partners";
 

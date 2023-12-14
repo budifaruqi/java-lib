@@ -16,6 +16,8 @@ public class GetBomWebResponse {
 
   private String id;
 
+  private String name;
+
   private String productId;
 
   private String productName;

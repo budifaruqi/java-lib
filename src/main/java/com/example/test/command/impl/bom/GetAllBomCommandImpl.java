@@ -79,6 +79,7 @@ public class GetAllBomCommandImpl implements GetAllBomCommand {
   private GetBomWebResponse toGetWebResponse(Bom bom, Product product, List<MaterialVO> materialVOS) {
     return GetBomWebResponse.builder()
         .id(bom.getId())
+        .name(bom.getName())
         .productId(bom.getProductId())
         .productName(product.getName())
         .materialList(materialVOS)

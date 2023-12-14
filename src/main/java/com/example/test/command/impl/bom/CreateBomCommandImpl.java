@@ -33,11 +33,11 @@ public class CreateBomCommandImpl implements CreateBomCommand {
     return Mono.defer(() -> checkProduct(request))
         .flatMap(product -> Mono.fromSupplier(() -> product)
             .flatMap(product1 -> Flux.fromIterable(request.getMaterialList())
-                .flatMap(this::checkMaterial)
+                .flatMapSequential(this::checkMaterial)
                 .collectList())
             .map(materials -> toBom(request, product, materials))
             .flatMap(bomRepository::save)
-            .map(s -> toGetWebResponse(s)));
+            .map(this::toGetWebResponse));
   }
 
   private Mono<Boolean> checkExist(CreateBomCommandRequest request) {
@@ -57,6 +57,7 @@ public class CreateBomCommandImpl implements CreateBomCommand {
 
   private MaterialVO buildMaterial(Product product, MaterialVO materialVO) {
     materialVO.setUnitOfMeasure(product.getUnitOfMeasure());
+    materialVO.setProductName(product.getName());
 
     return materialVO;
   }
@@ -72,6 +73,7 @@ public class CreateBomCommandImpl implements CreateBomCommand {
   private GetBomWebResponse toGetWebResponse(Bom bom) {
     return GetBomWebResponse.builder()
         .id(bom.getId())
+        .name(bom.getName())
         .productId(bom.getProductId())
         .materialList(bom.getMaterialList())
         .build();

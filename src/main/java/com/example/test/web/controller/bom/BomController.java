@@ -1,4 +1,4 @@
-package com.example.test.web.controller;
+package com.example.test.web.controller.bom;
 
 import com.example.test.command.bom.CreateBomCommand;
 import com.example.test.command.bom.GetAllBomCommand;
@@ -49,10 +49,11 @@ public class BomController extends BaseController {
   }
 
   @GetMapping
-  public Mono<Response<List<GetBomWebResponse>>> getAllBom(@RequestParam String name, @RequestParam String productId,
-      @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size,
-      @RequestParam(defaultValue = "-createdDate") String sortBy) {
+  public Mono<Response<List<GetBomWebResponse>>> getAllBom(@RequestParam(required = false) String name,
+      @RequestParam(required = false) String productId, @RequestParam(defaultValue = "1") int page,
+      @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "-createdDate") String sortBy) {
     GetAllBomCommandRequest commandRequest = GetAllBomCommandRequest.builder()
+        .name(name)
         .productId(productId)
         .pageable(PagingHelper.from(page, size, sortBy))
         .build();

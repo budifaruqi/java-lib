@@ -1,7 +1,7 @@
 package com.example.test.command.impl.purchaseRequest;
 
-import com.example.test.command.model.purchaseRequest.GetAllPurchaseRequestCommandRequest;
-import com.example.test.command.purchaseRequest.GetAllPurchaseRequestCommand;
+import com.example.test.command.model.purchaseRequest.GetPurchaseRequestByIdCommandRequest;
+import com.example.test.command.purchaseRequest.GetPurchaseRequestByIdCommand;
 import com.example.test.common.constant.ErrorCode;
 import com.example.test.common.vo.PartnerVO;
 import com.example.test.repository.PartnerRepository;
@@ -9,49 +9,34 @@ import com.example.test.repository.PurchaseRequestRepository;
 import com.example.test.repository.model.Partner;
 import com.example.test.repository.model.PurchaseRequest;
 import com.example.test.web.model.response.purchaseRequest.GetPurchaseRequestWebResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import com.solusinegeri.validation.model.exception.ValidationException;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
-public class GetAllPurchaseRequestCommandImpl implements GetAllPurchaseRequestCommand {
-
-  private final PartnerRepository partnerRepository;
+public class GetPurchaseRequestByIdCommandImpl implements GetPurchaseRequestByIdCommand {
 
   private final PurchaseRequestRepository purchaseRequestRepository;
 
-  public GetAllPurchaseRequestCommandImpl(PartnerRepository partnerRepository,
-      PurchaseRequestRepository purchaseRequestRepository) {
-    this.partnerRepository = partnerRepository;
+  private final PartnerRepository partnerRepository;
+
+  public GetPurchaseRequestByIdCommandImpl(PurchaseRequestRepository purchaseRequestRepository,
+      PartnerRepository partnerRepository) {
     this.purchaseRequestRepository = purchaseRequestRepository;
+    this.partnerRepository = partnerRepository;
   }
 
   @Override
-  public Mono<Page<GetPurchaseRequestWebResponse>> execute(GetAllPurchaseRequestCommandRequest request) {
-    return Mono.zip(getData(request), count(request))
-        .map(objects -> toPageResponse(request, objects.getT1(), objects.getT2()));
-  }
-
-  private Mono<Long> count(GetAllPurchaseRequestCommandRequest request) {
-    return purchaseRequestRepository.countAllByDeletedFalseAndFilter(request.getCustomerId(), request.getVendorId(),
-        request.getStatus(), request.getStartDate(), request.getEndDate(), request.getPageable());
-  }
-
-  private Mono<List<GetPurchaseRequestWebResponse>> getData(GetAllPurchaseRequestCommandRequest request) {
-    return Flux.defer(() -> getPR(request))
-        .flatMapSequential(purchaseRequest -> Mono.zip(getPartner(purchaseRequest.getVendorId()),
+  public Mono<GetPurchaseRequestWebResponse> execute(GetPurchaseRequestByIdCommandRequest request) {
+    return Mono.defer(() -> getPR(request))
+        .flatMap(purchaseRequest -> Mono.zip(getPartner(purchaseRequest.getVendorId()),
                 getPartner(purchaseRequest.getCustomerId()))
-            .map(objects -> toGetWebResponse(purchaseRequest, objects.getT1(), objects.getT2())))
-        .collectList();
+            .map(objects -> toGetWebResponse(purchaseRequest, objects.getT1(), objects.getT2())));
   }
 
-  private Flux<PurchaseRequest> getPR(GetAllPurchaseRequestCommandRequest request) {
-    return purchaseRequestRepository.findAllByDeletedFalseAndFilter(request.getCustomerId(), request.getVendorId(),
-        request.getStatus(), request.getStartDate(), request.getEndDate(), request.getPageable());
+  private Mono<PurchaseRequest> getPR(GetPurchaseRequestByIdCommandRequest request) {
+    return purchaseRequestRepository.findByDeletedFalseAndId(request.getId())
+        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PURCHASE_REQUEST_NOT_EXIST)));
   }
 
   private Mono<PartnerVO> getPartner(String id) {
@@ -91,10 +76,5 @@ public class GetAllPurchaseRequestCommandImpl implements GetAllPurchaseRequestCo
         .status(purchaseRequest.getStatus())
         .note(purchaseRequest.getNote())
         .build();
-  }
-
-  private PageImpl<GetPurchaseRequestWebResponse> toPageResponse(GetAllPurchaseRequestCommandRequest request,
-      List<GetPurchaseRequestWebResponse> contents, Long total) {
-    return new PageImpl<>(contents, request.getPageable(), total);
   }
 }

@@ -2,8 +2,10 @@ package com.example.test.command.impl.product.stock;
 
 import com.example.test.command.model.product.stock.GetProductStockCommandRequest;
 import com.example.test.command.product.stock.GetProductStockCommand;
+import com.example.test.common.constant.ErrorCode;
 import com.example.test.repository.ProductRepository;
 import com.example.test.repository.ProductStockRepository;
+import com.example.test.repository.model.Product;
 import com.example.test.repository.model.ProductStock;
 import com.example.test.web.model.response.product.stock.GetProductStockWebResponse;
 import org.springframework.data.domain.Page;
@@ -40,7 +42,8 @@ public class GetProductStockCommandImpl implements GetProductStockCommand {
 
   private Mono<List<GetProductStockWebResponse>> getData(GetProductStockCommandRequest request) {
     return Flux.defer(() -> getProductStock(request))
-        .map(productStock -> toGetWebResponse(productStock))
+        .flatMapSequential(productStock -> Mono.defer(() -> getProduct(productStock))
+            .map(product -> toGetWebResponse(productStock, product)))
         .collectList();
   }
 
@@ -49,12 +52,21 @@ public class GetProductStockCommandImpl implements GetProductStockCommand {
         request.getPageable());
   }
 
-  private GetProductStockWebResponse toGetWebResponse(ProductStock productStock) {
+  private Mono<Product> getProduct(ProductStock productStock) {
+    return productRepository.findByDeletedFalseAndId(productStock.getProductId())
+        .switchIfEmpty(Mono.fromSupplier(() -> Product.builder()
+            .name(ErrorCode.PRODUCT_NOT_EXIST)
+            .build()));
+  }
+
+  private GetProductStockWebResponse toGetWebResponse(ProductStock productStock, Product product) {
     return GetProductStockWebResponse.builder()
         .id(productStock.getId())
         .productId(productStock.getProductId())
+        .productName(product.getName())
         .companyId(productStock.getCompanyId())
         .stock(productStock.getStock())
+        .unitOfMeasure(product.getUnitOfMeasure())
         .hpp(productStock.getHpp())
         .retailPrice(productStock.getRetailPrice())
         .groceryPrice(productStock.getGroceryPrice())

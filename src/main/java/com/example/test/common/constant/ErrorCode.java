@@ -28,6 +28,8 @@ public final class ErrorCode {
 
   public static final String PRODUCT_CODE_ALREADY_USED = "PRODUCT_CODE_ALREADY_USED";
 
+  public static final String PRODUCT_NOT_AVAILABLE = "PRODUCT_NOT_AVAILABLE";
+
   public static final String PRODUCT_NOT_EXIST = "PRODUCT_NOT_EXIST";
 
   public static final String PRODUCT_QUANTITY_NOT_EXIST = "PRODUCT_QUANTITY_NOT_EXIST";
@@ -37,4 +39,8 @@ public final class ErrorCode {
   public static final String PRODUCT_STOCK_NOT_ENOUGH = "PRODUCT_STOCK_NOT_ENOUGH";
 
   public static final String PRODUCT_STOCK_NOT_EXIST = "PRODUCT_STOCK_NOT_EXIST";
+
+  public static final String PURCHASE_REQUEST_NOT_EXIST = "PURCHASE_REQUEST_NOT_EXIST";
+
+  public static final String STATUS_NOT_VALID = "STATUS_NOT_VALID";
 }

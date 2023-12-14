@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
@@ -12,14 +11,17 @@ import org.springframework.data.annotation.Id;
 @Builder
 public class GetProductStockWebResponse {
 
-  @Id
   private String id;
 
   private String productId;
 
+  private String productName;
+
   private String companyId;
 
   private Long stock;
+
+  private String unitOfMeasure;
 
   private Long hpp;
 

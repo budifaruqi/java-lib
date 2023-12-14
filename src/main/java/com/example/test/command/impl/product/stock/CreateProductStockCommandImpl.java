@@ -39,7 +39,7 @@ public class CreateProductStockCommandImpl implements CreateProductStockCommand 
         .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_NOT_EXIST)))
         .filter(product -> product.getCompanyShare()
             .contains(request.getCompanyId()))
-        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_NOT_EXIST)));
+        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_NOT_AVAILABLE)));
   }
 
   private Mono<Boolean> checkExist(CreateProductStockCommandRequest request) {
