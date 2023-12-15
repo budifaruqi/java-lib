@@ -1,0 +1,3 @@
+com.solusinegeri.web.autoconfigure.ReactiveWebAutoConfiguration
+com.solusinegeri.web.autoconfigure.ServletWebAutoConfiguration
+com.solusinegeri.web.autoconfigure.WebAutoConfiguration

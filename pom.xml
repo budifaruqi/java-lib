@@ -87,8 +87,8 @@
     <jjwt-api.version>0.12.3</jjwt-api.version>
     <spring-cloud-aws-dependencies.version>2.3.2</spring-cloud-aws-dependencies.version>
     <spring-cloud-dependencies.version>2020.0.4</spring-cloud-dependencies.version>
-    <springdoc.version>1.6.2</springdoc.version>
-    <swagger-core.version>2.1.11</swagger-core.version>
+    <springdoc.version>2.3.0</springdoc.version>
+    <swagger-core.version>2.2.19</swagger-core.version>
   </properties>
 
   <dependencyManagement>
@@ -215,24 +215,24 @@
         <artifactId>jjwt-impl</artifactId>
         <version>${jjwt-api.version}</version>
       </dependency>
-      <dependency>
-        <groupId>io.swagger.core.v3</groupId>
-        <artifactId>swagger-annotations</artifactId>
-        <version>${swagger-core.version}</version>
-      </dependency>
+      <!--      <dependency>-->
+      <!--        <groupId>io.swagger.core.v3</groupId>-->
+      <!--        <artifactId>swagger-annotations</artifactId>-->
+      <!--        <version>${swagger-core.version}</version>-->
+      <!--      </dependency>-->
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
         <version>${apache-commons-collections.version}</version>
       </dependency>
+      <!--      <dependency>-->
+      <!--        <groupId>org.springdoc</groupId>-->
+      <!--        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+      <!--        <version>${springdoc.version}</version>-->
+      <!--      </dependency>-->
       <dependency>
         <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-ui</artifactId>
-        <version>${springdoc.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
         <version>${springdoc.version}</version>
       </dependency>
     </dependencies>

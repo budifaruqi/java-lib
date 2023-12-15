@@ -1,0 +1,2 @@
+com.solusinegeri.command.autoconfigure.ReactiveCommandAutoConfiguration
+com.solusinegeri.command.autoconfigure.ServletCommandAutoConfiguration

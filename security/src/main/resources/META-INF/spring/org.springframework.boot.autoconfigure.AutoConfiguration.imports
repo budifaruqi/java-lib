@@ -1,0 +1,4 @@
+com.solusinegeri.security.autoconfigure.ReactiveSecurityAutoConfiguration
+com.solusinegeri.security.autoconfigure.SecurityAutoConfiguration
+com.solusinegeri.security.autoconfigure.ServletSecurityAutoConfiguration
+com.solusinegeri.security.importfilter.SecurityImportFilter

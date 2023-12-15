@@ -1,0 +1,2 @@
+com.solusinegeri.kafka.autoconfigure.ReactiveKafkaAutoConfiguration
+com.solusinegeri.kafka.autoconfigure.ServletKafkaAutoConfiguration

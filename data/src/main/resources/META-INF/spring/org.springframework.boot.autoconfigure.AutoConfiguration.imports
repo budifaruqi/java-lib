@@ -1,0 +1,3 @@
+com.solusinegeri.data.autoconfigure.DataAutoConfiguration
+com.solusinegeri.data.autoconfigure.ReactiveDataAutoConfiguration
+com.solusinegeri.data.autoconfigure.ServletDataAutoConfiguration

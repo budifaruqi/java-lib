@@ -24,15 +24,14 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+    <!--    <dependency>-->
+    <!--      <groupId>org.springdoc</groupId>-->
+    <!--      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+    <!--      <scope>provided</scope>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-ui</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-webflux-ui</artifactId>
-      <scope>provided</scope>
+      <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
     </dependency>
     <!-- test dependencies -->
     <dependency>
