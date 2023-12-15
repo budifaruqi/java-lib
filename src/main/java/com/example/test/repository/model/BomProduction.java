@@ -23,6 +23,8 @@ public class BomProduction extends BaseEntity {
 
   private String companyId;
 
+  private String transactionId;
+
   private String bomId;
 
   private Long qty;

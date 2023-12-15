@@ -10,6 +10,8 @@ public final class ErrorCode {
 
   public static final String BOM_NOT_EXIST = "BOM_NOT_EXIST";
 
+  public static final String BOM_PRODUCTION_NOT_EXIST = "BOM_PRODUCTION_NOT_EXIST";
+
   public static final String CATEGORY_NOT_EXIST = "CATEGORY_NOT_EXIST";
 
   public static final String MAX_VALUE_IS_100 = "MAX_VALUE_IS_100";
