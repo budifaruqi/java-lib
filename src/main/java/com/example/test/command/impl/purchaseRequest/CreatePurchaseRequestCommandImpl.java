@@ -4,10 +4,13 @@ import com.example.test.command.model.purchaseRequest.CreatePurchaseRequestComma
 import com.example.test.command.purchaseRequest.CreatePurchaseRequestCommand;
 import com.example.test.common.constant.ErrorCode;
 import com.example.test.common.enums.PRStatus;
+import com.example.test.common.enums.PriceType;
 import com.example.test.common.vo.ProductRequest;
+import com.example.test.repository.PartnerRepository;
 import com.example.test.repository.ProductRepository;
 import com.example.test.repository.ProductStockRepository;
 import com.example.test.repository.PurchaseRequestRepository;
+import com.example.test.repository.model.Partner;
 import com.example.test.repository.model.Product;
 import com.example.test.repository.model.ProductStock;
 import com.example.test.repository.model.PurchaseRequest;
@@ -27,26 +30,39 @@ public class CreatePurchaseRequestCommandImpl implements CreatePurchaseRequestCo
 
   private final PurchaseRequestRepository purchaseRequestRepository;
 
+  private final PartnerRepository partnerRepository;
+
   public CreatePurchaseRequestCommandImpl(ProductRepository productRepository,
-      ProductStockRepository productStockRepository, PurchaseRequestRepository purchaseRequestRepository) {
+      ProductStockRepository productStockRepository, PurchaseRequestRepository purchaseRequestRepository,
+      PartnerRepository partnerRepository) {
     this.productRepository = productRepository;
     this.productStockRepository = productStockRepository;
     this.purchaseRequestRepository = purchaseRequestRepository;
+    this.partnerRepository = partnerRepository;
   }
 
   @Override
   public Mono<Object> execute(CreatePurchaseRequestCommandRequest request) {
-    return Mono.defer(() -> buildProduct(request))
-        .map(productList -> toPurchaseRequest(productList, request))
-        .flatMap(purchaseRequestRepository::save);
+    return Mono.defer(() -> checkPartner(request))
+        .flatMap(vendor -> Mono.defer(() -> buildProduct(request, vendor))
+            .map(productList -> toPurchaseRequest(productList, request))
+            .flatMap(purchaseRequestRepository::save));
   }
 
-  private Mono<List<ProductRequest>> buildProduct(CreatePurchaseRequestCommandRequest request) {
+  private Mono<Partner> checkPartner(CreatePurchaseRequestCommandRequest request) {
+    return partnerRepository.findByDeletedFalseAndId(request.getVendorId())
+        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PARTNER_NOT_EXIST)))
+        .filter(Partner::getIsVendor)
+        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PARTNER_IS_NOT_A_VENDOR)));
+  }
+
+  private Mono<List<ProductRequest>> buildProduct(CreatePurchaseRequestCommandRequest request, Partner vendor) {
     return Flux.fromIterable(request.getProductList())
         .flatMapSequential(productList -> Mono.fromSupplier(() -> productList)
             .flatMap(this::validateProduct)
-            .flatMap(productRequest -> Mono.zip(findProduct(productRequest), findProductStock(request, productRequest))
-                .map(objects -> setProductList(objects.getT1(), objects.getT2(), productList))))
+            .flatMap(productRequest -> Mono.defer(() -> findProduct(productRequest))
+                .flatMap(product -> Mono.defer(() -> findProductStock(vendor, productRequest))
+                    .map(productStock -> setProductPrice(product, productStock, productRequest)))))
         .collectList();
   }
 
@@ -61,23 +77,34 @@ public class CreatePurchaseRequestCommandImpl implements CreatePurchaseRequestCo
         .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_NOT_EXIST)));
   }
 
-  private Mono<ProductStock> findProductStock(CreatePurchaseRequestCommandRequest request,
-      ProductRequest productRequest) {
-    return productStockRepository.findByDeletedFalseAndCompanyIdAndProductId(request.getVendorId(),
-            productRequest.getProductId())
-        .filter(productStock -> productStock.getStock() >= productRequest.getQty())
-        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_STOCK_NOT_ENOUGH)))
-        .map(productStock -> updateStock(productStock, productRequest))
-        .flatMap(productStockRepository::save);
+  private Mono<ProductStock> findProductStock(Partner vendor, ProductRequest productRequest) {
+    if (vendor.getIsInternal()) {
+      return productStockRepository.findByDeletedFalseAndCompanyIdAndProductId(vendor.getCompanyId(),
+              productRequest.getProductId())
+          .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_STOCK_NOT_EXIST)))
+          .filter(productStock -> productStock.getStock() >= productRequest.getQty())
+          .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_STOCK_NOT_ENOUGH)))
+          .map(productStock -> updateStock(productStock, productRequest))
+          .flatMap(productStockRepository::save);
+    }
+    return Mono.fromSupplier(() -> ProductStock.builder()
+        .groceryPrice(productRequest.getPrice())
+        .build());
   }
 
-  private ProductRequest setProductList(Product product, ProductStock productStock, ProductRequest productList) {
-    productList.setPrice(productStock.getGroceryPrice());
-    productList.setTotalPrice(productStock.getGroceryPrice() * productList.getQty());
-    productList.setProductName(product.getName());
-    productList.setUnitOfMeasure(product.getUnitOfMeasure());
+  private ProductRequest setProductPrice(Product product, ProductStock productStock, ProductRequest productRequest) {
 
-    return productList;
+    if (productRequest.getPriceType() == PriceType.PRODUCT) {
+      productRequest.setPrice(productStock.getGroceryPrice());
+      productRequest.setTotalPrice(productStock.getGroceryPrice() * productRequest.getQty());
+    } else {
+      productRequest.setPrice(productRequest.getPrice());
+      productRequest.setTotalPrice(productRequest.getPrice() * productRequest.getQty());
+    }
+    productRequest.setProductName(product.getName());
+    productRequest.setUnitOfMeasure(product.getUnitOfMeasure());
+
+    return productRequest;
   }
 
   private ProductStock updateStock(ProductStock productStock, ProductRequest productRequest) {

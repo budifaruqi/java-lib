@@ -14,6 +14,10 @@ public final class ErrorCode {
 
   public static final String CATEGORY_NOT_EXIST = "CATEGORY_NOT_EXIST";
 
+  public static final String COMPANY_NOT_FOUND = "COMPANY_NOT_FOUND";
+
+  public static final String INVALID_COMPANY_ID = "INVALID_COMPANY_ID";
+
   public static final String MAX_VALUE_IS_100 = "MAX_VALUE_IS_100";
 
   public static final String MIN_VALUE_IS_0 = "MIN_VALUE_IS_0";
@@ -21,6 +25,10 @@ public final class ErrorCode {
   public static final String NAME_ALREADY_USED = "NAME_ALREADY_USED";
 
   public static final String PARTNER_CATEGORY_NOT_EXIST = "PARTNER_CATEGORY_NOT_EXIST";
+
+  public static final String PARTNER_IS_NOT_A_CUSTOMER = "PARTNER_IS_NOT_A_CUSTOMER";
+
+  public static final String PARTNER_IS_NOT_A_VENDOR = "PARTNER_IS_NOT_A_VENDOR";
 
   public static final String PARTNER_NOT_EXIST = "PARTNER_NOT_EXIST";
 
@@ -34,6 +42,8 @@ public final class ErrorCode {
 
   public static final String PRODUCT_NOT_EXIST = "PRODUCT_NOT_EXIST";
 
+  public static final String PRODUCT_NOT_FOUND = "PRODUCT_NOT_FOUND";
+
   public static final String PRODUCT_QUANTITY_NOT_EXIST = "PRODUCT_QUANTITY_NOT_EXIST";
 
   public static final String PRODUCT_STOCK_ALREADY_EXISTS = "PRODUCT_STOCK_ALREADY_EXISTS";
@@ -43,6 +53,10 @@ public final class ErrorCode {
   public static final String PRODUCT_STOCK_NOT_EXIST = "PRODUCT_STOCK_NOT_EXIST";
 
   public static final String PURCHASE_REQUEST_NOT_EXIST = "PURCHASE_REQUEST_NOT_EXIST";
+
+  public static final String PURCHASE_REQUEST_STATUS_NOT_VALID = "PURCHASE_REQUEST_STATUS_NOT_VALID";
+
+  public static final String QUANTITY_MISMATCH = "QUANTITY_MISMATCH";
 
   public static final String STATUS_NOT_VALID = "STATUS_NOT_VALID";
 }

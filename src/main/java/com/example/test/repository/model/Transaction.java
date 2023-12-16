@@ -30,6 +30,10 @@ public class Transaction extends BaseEntity {
 
   private String transactionId;
 
+  private String vendorId;
+
+  private String customerId;
+
   private String purchaseRequestId;
 
   private String bomProductionId;

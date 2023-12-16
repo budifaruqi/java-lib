@@ -7,4 +7,6 @@ import reactor.core.publisher.Mono;
 public interface CompanyRepository extends ReactiveMongoRepository<Company, String> {
 
   Mono<Boolean> existsByDeletedFalseAndName(String request);
+
+  Mono<Company> findByIdAndDeletedFalse(String companyId);
 }

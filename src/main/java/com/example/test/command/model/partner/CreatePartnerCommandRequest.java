@@ -1,5 +1,6 @@
 package com.example.test.command.model.partner;
 
+import com.example.test.validation.annotation.InternalPartner;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@InternalPartner
 public class CreatePartnerCommandRequest {
 
   @NotBlank
@@ -41,4 +43,9 @@ public class CreatePartnerCommandRequest {
 
   @NotNull
   private Boolean isCustomer;
+
+  @NotNull
+  private Boolean isInternal;
+
+  private String companyId;
 }

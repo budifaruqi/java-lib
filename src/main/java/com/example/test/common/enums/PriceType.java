@@ -1,2 +1,6 @@
-package com.example.test.common.enums;public enum PriceType {
+package com.example.test.common.enums;
+
+public enum PriceType {
+  PRODUCT,
+  MANUAL
 }

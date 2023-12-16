@@ -11,5 +11,5 @@ public interface ProductStockRepository
 
   Mono<ProductStock> findByDeletedFalseAndId(String id);
 
-  Mono<ProductStock> findByDeletedFalseAndCompanyIdAndProductId(String vendorId, String productId);
+  Mono<ProductStock> findByDeletedFalseAndCompanyIdAndProductId(String companyId, String productId);
 }

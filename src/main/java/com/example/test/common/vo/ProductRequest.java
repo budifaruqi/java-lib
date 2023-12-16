@@ -1,5 +1,6 @@
 package com.example.test.common.vo;
 
+import com.example.test.common.enums.PriceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,4 +28,7 @@ public class ProductRequest {
   private String productName;
 
   private String unitOfMeasure;
+
+  @NotNull
+  private PriceType priceType;
 }

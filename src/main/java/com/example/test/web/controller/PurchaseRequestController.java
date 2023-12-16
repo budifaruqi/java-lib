@@ -47,7 +47,7 @@ public class PurchaseRequestController extends BaseController {
   @PostMapping
   public Mono<Response<Object>> createPurchaseRequest(@RequestBody CreatePurchaseRequestWebRequest request) {
     CreatePurchaseRequestCommandRequest commandRequest = CreatePurchaseRequestCommandRequest.builder()
-        .customerId("XX")
+        .customerId("657c129bec4fce22f041c055")
         .vendorId(request.getVendorId())
         .productList(request.getProductList())
         .note(request.getNote())
@@ -61,8 +61,9 @@ public class PurchaseRequestController extends BaseController {
   public Mono<Response<List<GetPurchaseRequestWebResponse>>> getAllPurchaseRequest(
       @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size,
       @RequestParam(defaultValue = "-createdDate") String sortBy, @RequestParam(required = false) PRStatus status,
-      @RequestParam String vendorId, @RequestParam String customerId, @RequestParam(required = false) String startDate,
-      @RequestParam(required = false) String endDate) throws ParseException {
+      @RequestParam(required = false) String vendorId, @RequestParam(required = false) String customerId,
+      @RequestParam(required = false) String startDate, @RequestParam(required = false) String endDate)
+      throws ParseException {
     GetAllPurchaseRequestCommandRequest commandRequest = GetAllPurchaseRequestCommandRequest.builder()
         .customerId(customerId)
         .vendorId(vendorId)

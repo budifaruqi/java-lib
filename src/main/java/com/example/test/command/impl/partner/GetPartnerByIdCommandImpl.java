@@ -43,6 +43,8 @@ public class GetPartnerByIdCommandImpl implements GetPartnerByIdCommand {
         .picEmail(partner.getPicEmail())
         .isVendor(partner.getIsVendor())
         .isCustomer(partner.getIsCustomer())
+        .isInternal(partner.getIsInternal())
+        .companyId(partner.getCompanyId())
         .build();
   }
 }

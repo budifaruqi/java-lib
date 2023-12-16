@@ -8,4 +8,6 @@ public interface PurchaseRequestRepository
     extends ReactiveMongoRepository<PurchaseRequest, String>, PurchaseRequestRepositoryFilter {
 
   Mono<PurchaseRequest> findByDeletedFalseAndId(String id);
+
+  Mono<PurchaseRequest> findByDeletedFalseAndAndVendorIdAndId(String companyId, String purchaseRequestId);
 }

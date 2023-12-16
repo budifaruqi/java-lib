@@ -149,7 +149,7 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
         .productList(Collections.singletonList(product))
         .transactionScope(TransactionScope.INTERNAL)
         .transactionType(TransactionType.PRODUCTION)
-        .transactionStatus(TransactionStatus.REQUESTED)
+        .transactionStatus(TransactionStatus.PROCESSED)
         .build();
   }
 }

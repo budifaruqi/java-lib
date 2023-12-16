@@ -57,6 +57,8 @@ public class GetAllPartnerCommandImpl implements GetAllPartnerCommand {
         .picEmail(partner.getPicEmail())
         .isVendor(partner.getIsVendor())
         .isCustomer(partner.getIsCustomer())
+        .isInternal(partner.getIsInternal())
+        .companyId(partner.getCompanyId())
         .build();
   }
 

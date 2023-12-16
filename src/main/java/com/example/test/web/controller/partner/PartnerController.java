@@ -52,6 +52,8 @@ public class PartnerController extends BaseController {
         .picEmail(request.getPicEmail())
         .isVendor(request.getIsVendor())
         .isCustomer(request.getIsCustomer())
+        .isInternal(request.getIsInternal())
+        .companyId(request.getCompanyId())
         .build();
     return executor.execute(CreatePartnerCommand.class, commandRequest)
         .map(ResponseHelper::ok);

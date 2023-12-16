@@ -40,4 +40,8 @@ public class Partner extends BaseEntity {
   private Boolean isVendor;
 
   private Boolean isCustomer;
+
+  private Boolean isInternal;
+
+  private String companyId;
 }

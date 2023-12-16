@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateTransactionByPurchaseRequestIdCommandRequest {
+public class CreateTransactionCommandRequest {
 
   @NotBlank
   private String companyId;
