@@ -1,2 +1,3 @@
-com.solusinegeri.kafka.autoconfigure.ReactiveKafkaAutoConfiguration
-com.solusinegeri.kafka.autoconfigure.ServletKafkaAutoConfiguration
+com.solusinegeri.mongodb.autoconfigure.MongoDbAutoConfiguration
+com.solusinegeri.mongodb.autoconfigure.ReactiveMongoDbAutoConfiguration
+com.solusinegeri.mongodb.autoconfigure.ServletMongoDbAutoConfiguration
