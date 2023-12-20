@@ -60,6 +60,8 @@ public class GetPurchaseRequestByIdCommandImpl implements GetPurchaseRequestById
         .picEmail(partner.getPicEmail())
         .isVendor(partner.getIsVendor())
         .isCustomer(partner.getIsCustomer())
+        .isInternal(partner.getIsInternal())
+        .companyId(partner.getCompanyId())
         .build();
   }
 

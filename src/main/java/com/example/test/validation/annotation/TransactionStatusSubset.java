@@ -1,6 +1,8 @@
 package com.example.test.validation.annotation;
 
-import com.example.test.validation.validator.StringLengthValidator;
+import com.example.test.common.constant.ErrorCode;
+import com.example.test.common.enums.TransactionStatus;
+import com.example.test.validation.validator.TransactionStatusSubsetValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -19,16 +21,15 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = StringLengthValidator.class)
-public @interface StringLength {
+@Constraint(validatedBy = TransactionStatusSubsetValidator.class)
 
-  long max();
+public @interface TransactionStatusSubset {
 
-  long min() default 0L;
-
-  String message() default "lenght min {min}, max {max}";
+  TransactionStatus[] anyOf();
 
   Class<?>[] groups() default {};
+
+  String message() default ErrorCode.STATUS_NOT_VALID;
 
   Class<? extends Payload>[] payload() default {};
 }

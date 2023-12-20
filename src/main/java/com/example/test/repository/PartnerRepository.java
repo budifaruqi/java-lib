@@ -9,4 +9,6 @@ public interface PartnerRepository extends ReactiveMongoRepository<Partner, Stri
   Mono<Partner> findByDeletedFalseAndId(String id);
 
   Mono<Partner> findByDeletedFalseAndName(String name);
+
+  Mono<Partner> findByDeletedFalseAndCompanyId(String companyId);
 }

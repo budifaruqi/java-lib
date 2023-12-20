@@ -9,5 +9,5 @@ public interface PurchaseRequestRepository
 
   Mono<PurchaseRequest> findByDeletedFalseAndId(String id);
 
-  Mono<PurchaseRequest> findByDeletedFalseAndAndVendorIdAndId(String companyId, String purchaseRequestId);
+  Mono<PurchaseRequest> findByDeletedFalseAndVendorIdAndId(String companyId, String purchaseRequestId);
 }

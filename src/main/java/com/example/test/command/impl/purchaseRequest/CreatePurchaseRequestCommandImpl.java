@@ -58,11 +58,10 @@ public class CreatePurchaseRequestCommandImpl implements CreatePurchaseRequestCo
 
   private Mono<List<ProductRequest>> buildProduct(CreatePurchaseRequestCommandRequest request, Partner vendor) {
     return Flux.fromIterable(request.getProductList())
-        .flatMapSequential(productList -> Mono.fromSupplier(() -> productList)
-            .flatMap(this::validateProduct)
-            .flatMap(productRequest -> Mono.defer(() -> findProduct(productRequest))
-                .flatMap(product -> Mono.defer(() -> findProductStock(vendor, productRequest))
-                    .map(productStock -> setProductPrice(product, productStock, productRequest)))))
+        .flatMapSequential(this::validateProduct)
+        .flatMap(productRequest -> Mono.defer(() -> findProduct(productRequest))
+            .flatMap(product -> Mono.defer(() -> findProductStock(vendor, productRequest))
+                .map(productStock -> setProductPrice(product, productStock, productRequest))))
         .collectList();
   }
 
@@ -103,6 +102,7 @@ public class CreatePurchaseRequestCommandImpl implements CreatePurchaseRequestCo
     }
     productRequest.setProductName(product.getName());
     productRequest.setUnitOfMeasure(product.getUnitOfMeasure());
+    productRequest.setProcessedQty(0L);
 
     return productRequest;
   }

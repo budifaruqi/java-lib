@@ -15,11 +15,10 @@ import com.example.test.repository.ProductStockRepository;
 import com.example.test.repository.TransactionRepository;
 import com.example.test.repository.model.Bom;
 import com.example.test.repository.model.BomProduction;
+import com.example.test.repository.model.MainTransaction;
 import com.example.test.repository.model.Product;
 import com.example.test.repository.model.ProductStock;
-import com.example.test.repository.model.Transaction;
 import com.solusinegeri.validation.model.exception.ValidationException;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -52,17 +51,19 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
 
   @Override
   public Mono<Object> execute(CreateBomProductionCommandRequest request) {
-    return Mono.fromSupplier(this::generateTransactionId)
-        .flatMap(transactionId -> Mono.defer(() -> findBom(request))
-            .flatMap(bom -> Mono.defer(() -> validateProduct(bom, request))
-                .flatMap(product -> Mono.fromSupplier(() -> toBomProduction(transactionId, bom, request, product))
-                    .flatMap(bomProductionRepository::save)
-                    .map(bomProduction -> toTransaction(bomProduction, transactionId, product))
-                    .flatMap(transactionRepository::save))));
+    return Mono.defer(() -> findBom(request))
+        .flatMap(bom -> Mono.defer(() -> validateProduct(bom, request))
+            .flatMap(product -> Mono.fromSupplier(() -> toBomProduction(bom, request, product))
+                .flatMap(bomProduction -> Mono.fromSupplier(() -> toTransaction(bomProduction, product))
+                    .flatMap(transactionRepository::save)
+                    .map(newTransaction -> updateTransactionId(bomProduction, newTransaction)))
+                .flatMap(bomProductionRepository::save)));
   }
 
-  private String generateTransactionId() {
-    return String.valueOf(new ObjectId());
+  private BomProduction updateTransactionId(BomProduction bomProduction, MainTransaction s) {
+    bomProduction.setTransactionId(s.getId());
+
+    return bomProduction;
   }
 
   private Mono<Bom> findBom(CreateBomProductionCommandRequest request) {
@@ -131,20 +132,18 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
         .build();
   }
 
-  private BomProduction toBomProduction(String transactionId, Bom bom, CreateBomProductionCommandRequest request,
+  private BomProduction toBomProduction(Bom bom, CreateBomProductionCommandRequest request,
       ProductRequest productRequest) {
     return BomProduction.builder()
         .companyId(request.getCompanyId())
-        .transactionId(transactionId)
         .bomId(bom.getId())
         .qty(request.getQty())
         .amount(productRequest.getTotalPrice())
         .build();
   }
 
-  private Transaction toTransaction(BomProduction bomProduction, String transactionId, ProductRequest product) {
-    return Transaction.builder()
-        .transactionId(transactionId)
+  private MainTransaction toTransaction(BomProduction bomProduction, ProductRequest product) {
+    return MainTransaction.builder()
         .bomProductionId(bomProduction.getId())
         .productList(Collections.singletonList(product))
         .transactionScope(TransactionScope.INTERNAL)

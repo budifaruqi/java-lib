@@ -75,6 +75,8 @@ public class GetAllPurchaseRequestCommandImpl implements GetAllPurchaseRequestCo
         .picEmail(partner.getPicEmail())
         .isVendor(partner.getIsVendor())
         .isCustomer(partner.getIsCustomer())
+        .isInternal(partner.getIsInternal())
+        .companyId(partner.getCompanyId())
         .build();
   }
 

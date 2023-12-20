@@ -22,6 +22,8 @@ public final class ErrorCode {
 
   public static final String MIN_VALUE_IS_0 = "MIN_VALUE_IS_0";
 
+  public static final String MIN_VALUE_IS_1 = "MIN_VALUE_IS_1";
+
   public static final String NAME_ALREADY_USED = "NAME_ALREADY_USED";
 
   public static final String PARTNER_CATEGORY_NOT_EXIST = "PARTNER_CATEGORY_NOT_EXIST";
@@ -33,6 +35,8 @@ public final class ErrorCode {
   public static final String PARTNER_NOT_EXIST = "PARTNER_NOT_EXIST";
 
   public static final String BRAND_NOT_EXIST = "BRAND_NOT_EXIST";
+
+  public static final String PROCESSED_QTY_EXCEEDS_REQUESTED_QTY = "PROCESSED_QTY_EXCEEDS_REQUESTED_QTY";
 
   public static final String PRODUCT_CATEGORY_NOT_EXIST = "PRODUCT_CATEGORY_NOT_EXIST";
 
@@ -59,4 +63,6 @@ public final class ErrorCode {
   public static final String QUANTITY_MISMATCH = "QUANTITY_MISMATCH";
 
   public static final String STATUS_NOT_VALID = "STATUS_NOT_VALID";
+
+  public static final String TRANSACTION_NOT_EXIST = "TRANSACTION_NOT_EXIST";
 }

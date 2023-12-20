@@ -2,9 +2,9 @@ package com.example.test.validation.validator;
 
 import com.example.test.common.enums.PRStatus;
 import com.example.test.validation.annotation.PRStatusSubset;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 
 public class PRStatusSubsetValidator implements ConstraintValidator<PRStatusSubset, PRStatus> {

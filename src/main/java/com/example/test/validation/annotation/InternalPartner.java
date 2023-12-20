@@ -2,9 +2,9 @@ package com.example.test.validation.annotation;
 
 import com.example.test.common.constant.ErrorCode;
 import com.example.test.validation.validator.InternalPartnerValidator;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

@@ -28,5 +28,5 @@ public final class CollectionName {
 
   public static final String PURCHASE_REQUEST = "purchase_requests";
 
-  public static final String TRANSACTION = "transactions";
+  public static final String MAIN_TRANSACTION = "main_transactions";
 }

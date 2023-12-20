@@ -2,9 +2,8 @@ package com.example.test.validation.validator;
 
 import com.example.test.command.model.partner.CreatePartnerCommandRequest;
 import com.example.test.validation.annotation.InternalPartner;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class InternalPartnerValidator implements ConstraintValidator<InternalPartner, CreatePartnerCommandRequest> {
 

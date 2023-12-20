@@ -1,6 +1,6 @@
-package com.example.test.command.model.bom;
+package com.example.test.command.model.transaction;
 
-import com.example.test.common.vo.MaterialVO;
+import com.example.test.common.vo.ProductRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,21 +12,20 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class UpdateBomCommandRequest {
+public class CreateSellTransactionCommandRequest {
 
   @NotBlank
-  private String id;
+  private String companyId;
 
   @NotBlank
-  private String productId;
-
-  @NotBlank
-  private String name;
+  private String customerId;
 
   @NotEmpty
   @Valid
-  private List<MaterialVO> materialList;
+  private List<ProductRequest> productList;
+
+  private String note;
 }
