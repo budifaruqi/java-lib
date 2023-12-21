@@ -45,6 +45,7 @@ public class GetPartnerByIdCommandImpl implements GetPartnerByIdCommand {
         .isCustomer(partner.getIsCustomer())
         .isInternal(partner.getIsInternal())
         .companyId(partner.getCompanyId())
+        .partnerTagList(partner.getPartnerTagList())
         .build();
   }
 }

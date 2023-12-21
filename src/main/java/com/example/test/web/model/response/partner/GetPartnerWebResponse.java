@@ -1,9 +1,12 @@
 package com.example.test.web.model.response.partner;
 
+import com.example.test.common.vo.TagVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -36,4 +39,6 @@ public class GetPartnerWebResponse {
   private Boolean isInternal;
 
   private String companyId;
+
+  private List<TagVO> partnerTagList;
 }

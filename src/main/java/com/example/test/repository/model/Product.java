@@ -1,6 +1,7 @@
 package com.example.test.repository.model;
 
 import com.example.test.common.constant.CollectionName;
+import com.example.test.common.vo.TagVO;
 import com.solusinegeri.data.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,4 +43,6 @@ public class Product extends BaseEntity {
   private List<String> imageUrls;
 
   private List<String> companyShare;
+
+  private List<TagVO> productTagList;
 }

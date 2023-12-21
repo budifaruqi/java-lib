@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,4 +36,6 @@ public class CreatePartnerWebRequest {
   private Boolean isInternal;
 
   private String companyId;
+
+  private List<String> partnerTagIds;
 }

@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,4 +45,6 @@ public class UpdatePartnerCommandRequest {
 
   @NotNull
   private Boolean isCustomer;
+
+  private List<String> partnerTagIds;
 }

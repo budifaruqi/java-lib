@@ -36,6 +36,8 @@ public final class ErrorCode {
 
   public static final String BRAND_NOT_EXIST = "BRAND_NOT_EXIST";
 
+  public static final String PARTNER_TAG_NOT_EXIST = "PARTNER_TAG_NOT_EXIST";
+
   public static final String PROCESSED_QTY_EXCEEDS_REQUESTED_QTY = "PROCESSED_QTY_EXCEEDS_REQUESTED_QTY";
 
   public static final String PRODUCT_CATEGORY_NOT_EXIST = "PRODUCT_CATEGORY_NOT_EXIST";
@@ -55,6 +57,8 @@ public final class ErrorCode {
   public static final String PRODUCT_STOCK_NOT_ENOUGH = "PRODUCT_STOCK_NOT_ENOUGH";
 
   public static final String PRODUCT_STOCK_NOT_EXIST = "PRODUCT_STOCK_NOT_EXIST";
+
+  public static final String PRODUCT_TAG_NOT_EXIST = "PRODUCT_TAG_NOT_EXIST";
 
   public static final String PURCHASE_REQUEST_NOT_EXIST = "PURCHASE_REQUEST_NOT_EXIST";
 

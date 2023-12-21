@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @SpringBootApplication
 @EnableReactiveMongoRepositories
 @ConfigurationPropertiesScan
-@EnableReactiveMongoAuditing
+//@EnableReactiveMongoAuditing
 public class TestApplication {
 
   public static void main(String[] args) {

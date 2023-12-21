@@ -20,6 +20,8 @@ public final class CollectionName {
 
   public static final String PARTNER_CATEGORY = "partner_categories";
 
+  public static final String PARTNER_TAG = "partner_tags";
+
   public static final String PRODUCT = "products";
 
   public static final String PRODUCT_CATEGORY = "product_categories";
@@ -29,4 +31,6 @@ public final class CollectionName {
   public static final String PURCHASE_REQUEST = "purchase_requests";
 
   public static final String MAIN_TRANSACTION = "main_transactions";
+
+  public static final String PRODUCT_TAG = "product_tags";
 }

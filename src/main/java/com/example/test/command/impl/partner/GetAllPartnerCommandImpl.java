@@ -59,6 +59,7 @@ public class GetAllPartnerCommandImpl implements GetAllPartnerCommand {
         .isCustomer(partner.getIsCustomer())
         .isInternal(partner.getIsInternal())
         .companyId(partner.getCompanyId())
+        .partnerTagList(partner.getPartnerTagList())
         .build();
   }
 

@@ -54,6 +54,7 @@ public class PartnerController extends BaseController {
         .isCustomer(request.getIsCustomer())
         .isInternal(request.getIsInternal())
         .companyId(request.getCompanyId())
+        .partnerTagIds(request.getPartnerTagIds())
         .build();
     return executor.execute(CreatePartnerCommand.class, commandRequest)
         .map(ResponseHelper::ok);
@@ -100,6 +101,7 @@ public class PartnerController extends BaseController {
         .picEmail(request.getPicEmail())
         .isVendor(request.getIsVendor())
         .isCustomer(request.getIsCustomer())
+        .partnerTagIds(request.getPartnerTagIds())
         .build();
 
     return executor.execute(UpdatePartnerCommand.class, commandRequest)
