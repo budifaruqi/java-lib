@@ -1,5 +1,6 @@
 package com.example.test.web.model.response.product;
 
+import com.example.test.common.vo.TagVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,4 +39,6 @@ public class GetProductWebResponse {
   private List<String> imageUrls;
 
   private List<String> companyShare;
+
+  private List<TagVO> productTagList;
 }

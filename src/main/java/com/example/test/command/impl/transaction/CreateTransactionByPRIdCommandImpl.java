@@ -51,9 +51,7 @@ public class CreateTransactionByPRIdCommandImpl implements CreateTransactionByPR
             .flatMap(purchaseRequest -> Mono.defer(() -> getCustomer(purchaseRequest))
                 .flatMap(customer -> Mono.defer(() -> checkProduct(purchaseRequest, request))
                     .map(productList -> toTransaction(purchaseRequest, productList, customer))
-                    .flatMap(transactionRepository::save)
-                    .map(s -> s.getCreatedDate()
-                        .toString()))));
+                    .flatMap(transactionRepository::save))));
   }
 
   private String generateTransactionId() {
@@ -117,16 +115,16 @@ public class CreateTransactionByPRIdCommandImpl implements CreateTransactionByPR
         //          hasPartialQuantity = true;
         //          purchaseRequest.setStatus(PRStatus.PARTIAL);
         //        }
-        //        long newProcessedQty = matchingProduct.get()
-        //            .getProcessedQty() + pr.getQty();
-        //        if (newProcessedQty > matchingProduct.get()
-        //            .getQty()) {
-        //          return Mono.error(new ValidationException(ErrorCode.PROCESSED_QTY_EXCEEDS_REQUESTED_QTY,
-        //              "Processed quantity exceeds requested quantity for productId: " + pr.getProductId()));
-        //        }
-        //
-        //        matchingProduct.get()
-        //            .setProcessedQty(newProcessedQty);
+        long newProcessedQty = matchingProduct.get()
+            .getProcessedQty() + pr.getQty();
+        if (newProcessedQty > matchingProduct.get()
+            .getQty()) {
+          return Mono.error(new ValidationException(ErrorCode.PROCESSED_QTY_EXCEEDS_REQUESTED_QTY,
+              "Processed quantity exceeds requested quantity for productId: " + pr.getProductId()));
+        }
+
+        matchingProduct.get()
+            .setProcessedQty(newProcessedQty);
         // Set fields from the purchaseRequest to the matching product
         pr.setPrice(matchingProduct.get()
             .getPrice());

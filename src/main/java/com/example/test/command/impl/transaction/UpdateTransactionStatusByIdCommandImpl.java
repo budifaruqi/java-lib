@@ -35,6 +35,8 @@ public class UpdateTransactionStatusByIdCommandImpl implements UpdateTransaction
     return Mono.defer(() -> findTransaction(request))
         .flatMap(transaction -> Mono.defer(() -> getVendor(transaction))
             .map(vendor -> updateStatus(transaction, request))
+            .flatMap(updatedTransaction -> Mono.fromSupplier(() -> updatedTransaction)
+                .filter(updatedTransaction1 -> updatedTransaction1.getStatus() == TransactionStatus.CANCELED))
             .flatMap(transactionRepository::save)
             .map(this::toGetWebResponse));
   }

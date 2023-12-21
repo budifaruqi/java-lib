@@ -47,7 +47,7 @@ public class PurchaseRequestController extends BaseController {
   @PostMapping
   public Mono<Response<Object>> createPurchaseRequest(@RequestBody CreatePurchaseRequestWebRequest request) {
     CreatePurchaseRequestCommandRequest commandRequest = CreatePurchaseRequestCommandRequest.builder()
-        .customerId("657c129bec4fce22f041c055")
+        .customerId("6583df8ddabc3c382a43ba90")
         .vendorId(request.getVendorId())
         .productList(request.getProductList())
         .note(request.getNote())

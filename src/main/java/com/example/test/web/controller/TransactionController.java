@@ -34,7 +34,7 @@ public class TransactionController extends BaseController {
   @PostMapping("/pr")
   public Mono<Response<Object>> createTransactionByPRId(@RequestBody CreateTransactionByPRIdWebRequest request) {
     CreateTransactionByPRIdCommandRequest commandRequest = CreateTransactionByPRIdCommandRequest.builder()
-        .companyId("657aa8b5b89eb0426b0e52d3")
+        .companyId("6583df30dabc3c382a43ba8b")
         .purchaseRequestId(request.getPurchaseRequestId())
         .productList(request.getProductList())
         .build();

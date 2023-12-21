@@ -3,17 +3,22 @@ package com.example.test.command.impl.product;
 import com.example.test.command.model.product.UpdateProductCommandRequest;
 import com.example.test.command.product.UpdateProductCommand;
 import com.example.test.common.constant.ErrorCode;
+import com.example.test.common.vo.TagVO;
 import com.example.test.repository.BrandRepository;
 import com.example.test.repository.ProductCategoryRepository;
 import com.example.test.repository.ProductRepository;
+import com.example.test.repository.ProductTagRepository;
 import com.example.test.repository.model.Brand;
 import com.example.test.repository.model.Product;
 import com.example.test.repository.model.ProductCategory;
+import com.example.test.repository.model.ProductTag;
 import com.example.test.web.model.response.product.GetProductWebResponse;
 import com.solusinegeri.validation.model.exception.ValidationException;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -25,11 +30,15 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
 
   private final BrandRepository brandRepository;
 
+  private final ProductTagRepository productTagRepository;
+
   public UpdateProductCommandImpl(ProductRepository productRepository,
-      ProductCategoryRepository productCategoryRepository, BrandRepository brandRepository) {
+      ProductCategoryRepository productCategoryRepository, BrandRepository brandRepository,
+      ProductTagRepository productTagRepository) {
     this.productRepository = productRepository;
     this.productCategoryRepository = productCategoryRepository;
     this.brandRepository = brandRepository;
+    this.productTagRepository = productTagRepository;
   }
 
   @Override
@@ -38,9 +47,29 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
         .flatMap(product -> Mono.defer(() -> checkCode(request, product))
             .flatMap(check -> checkCategory(request))
             .flatMap(productCategory -> Mono.defer(() -> checkBrand(request))
-                .flatMap(brand -> Mono.fromSupplier(() -> updateProduct(request, product))
+                .flatMap(brand -> Mono.defer(() -> getTag(request))
+                    .map(tags -> updateProduct(request, product, tags))
                     .flatMap(productRepository::save)
                     .map(newProduct -> toGetWebResponse(newProduct, productCategory, brand)))));
+  }
+
+  private Mono<List<TagVO>> getTag(UpdateProductCommandRequest request) {
+    return Flux.fromIterable(request.getProductTagIds())
+        .flatMapSequential(this::findTagName)
+        .map(this::toTagVO)
+        .collectList();
+  }
+
+  private TagVO toTagVO(ProductTag partnerTag) {
+    return TagVO.builder()
+        .id(partnerTag.getId())
+        .name(partnerTag.getName())
+        .build();
+  }
+
+  private Mono<ProductTag> findTagName(String id) {
+    return productTagRepository.findByDeletedFalseAndId(id)
+        .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_TAG_NOT_EXIST)));
   }
 
   private Mono<Product> findProduct(UpdateProductCommandRequest request) {
@@ -66,7 +95,7 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
         .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_CODE_ALREADY_USED)));
   }
 
-  private Product updateProduct(UpdateProductCommandRequest request, Product product) {
+  private Product updateProduct(UpdateProductCommandRequest request, Product product, List<TagVO> tags) {
     product.setCategoryId(request.getCategoryId());
     product.setBrandId(request.getBrandId());
     product.setName(request.getName());
@@ -77,6 +106,7 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
     product.setDescription(request.getDescription());
     product.setImageUrls(request.getImageUrls());
     product.setCompanyShare(request.getCompanyShare());
+    product.setProductTagList(tags);
 
     return product;
   }
@@ -96,6 +126,7 @@ public class UpdateProductCommandImpl implements UpdateProductCommand {
         .description(product.getDescription())
         .imageUrls(product.getImageUrls())
         .companyShare(product.getCompanyShare())
+        .productTagList(product.getProductTagList())
         .build();
   }
 }

@@ -51,6 +51,7 @@ public class ProductController extends BaseController {
         .description(request.getDescription())
         .imageUrls(request.getImageUrls())
         .companyShare(request.getCompanyShare())
+        .productTagIds(request.getProductTagIds())
         .build();
 
     return executor.execute(CreateProductCommand.class, commandRequest)
@@ -101,6 +102,7 @@ public class ProductController extends BaseController {
         .description(request.getDescription())
         .imageUrls(request.getImageUrls())
         .companyShare(request.getCompanyShare())
+        .productTagIds(request.getProductTagIds())
         .build();
 
     return executor.execute(UpdateProductCommand.class, commandRequest)

@@ -32,4 +32,6 @@ public class UpdateProductWebRequest {
   private List<String> imageUrls;
 
   private List<String> companyShare;
+
+  private List<String> productTagIds;
 }
