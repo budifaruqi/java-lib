@@ -51,7 +51,19 @@ public class CreateTransactionByPRIdCommandImpl implements CreateTransactionByPR
             .flatMap(purchaseRequest -> Mono.defer(() -> getCustomer(purchaseRequest))
                 .flatMap(customer -> Mono.defer(() -> checkProduct(purchaseRequest, request))
                     .map(productList -> toTransaction(purchaseRequest, productList, customer))
-                    .flatMap(transactionRepository::save))));
+                    .flatMap(transactionRepository::save)
+                    .map(mainTransaction -> setPRTransactionId(purchaseRequest, mainTransaction))
+                    .flatMap(purchaseRequestRepository::save))));
+  }
+
+  private PurchaseRequest setPRTransactionId(PurchaseRequest purchaseRequest, MainTransaction mainTransaction) {
+    List<String> idList =
+        purchaseRequest.getTransactionIds() == null ? new ArrayList<>() : purchaseRequest.getTransactionIds();
+    idList.add(mainTransaction.getId());
+
+    purchaseRequest.setTransactionIds(idList);
+
+    return purchaseRequest;
   }
 
   private String generateTransactionId() {

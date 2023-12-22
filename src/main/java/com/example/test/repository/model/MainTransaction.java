@@ -42,8 +42,6 @@ public class MainTransaction extends BaseEntity {
 
   private TransactionType transactionType;
 
-  private TransactionStatus transactionStatus;
-
   private Long amountTotal;
 
   private Long amountPpn;

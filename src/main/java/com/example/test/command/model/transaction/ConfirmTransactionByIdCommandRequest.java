@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UpdateTransactionStatusByIdCommandRequest {
+public class ConfirmTransactionByIdCommandRequest {
 
   private String id;
 
   @NotNull
-  @TransactionStatusSubset(anyOf = {TransactionStatus.DELIVERED, TransactionStatus.CANCELED})
+  @TransactionStatusSubset(anyOf = {TransactionStatus.CONFIRMED})
   private TransactionStatus status;
 }

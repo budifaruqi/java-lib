@@ -68,5 +68,7 @@ public final class ErrorCode {
 
   public static final String STATUS_NOT_VALID = "STATUS_NOT_VALID";
 
+  public static final String TRANSACTION_ID_NOT_IN_PURCHASE_REQUEST = "TRANSACTION_ID_NOT_IN_PURCHASE_REQUEST";
+
   public static final String TRANSACTION_NOT_EXIST = "TRANSACTION_NOT_EXIST";
 }

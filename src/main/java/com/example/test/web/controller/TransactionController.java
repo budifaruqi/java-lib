@@ -1,8 +1,10 @@
 package com.example.test.web.controller;
 
+import com.example.test.command.model.transaction.ConfirmTransactionByIdCommandRequest;
 import com.example.test.command.model.transaction.CreateSellTransactionCommandRequest;
 import com.example.test.command.model.transaction.CreateTransactionByPRIdCommandRequest;
 import com.example.test.command.model.transaction.UpdateTransactionStatusByIdCommandRequest;
+import com.example.test.command.transaction.ConfirmTransactionByIdCommand;
 import com.example.test.command.transaction.CreateSellTransactionCommand;
 import com.example.test.command.transaction.CreateTransactionByPRIdCommand;
 import com.example.test.command.transaction.UpdateTransactionStatusByIdCommand;
@@ -65,6 +67,16 @@ public class TransactionController extends BaseController {
         .build();
 
     return executor.execute(UpdateTransactionStatusByIdCommand.class, commandRequest)
+        .map(ResponseHelper::ok);
+  }
+
+  @PutMapping("/confirm/{id}")
+  public Mono<Response<GetTransactionWebResponse>> ConfirmTransactionById(@PathVariable String id) {
+    ConfirmTransactionByIdCommandRequest commandRequest = ConfirmTransactionByIdCommandRequest.builder()
+        .id(id)
+        .status(TransactionStatus.CONFIRMED)
+        .build();
+    return executor.execute(ConfirmTransactionByIdCommand.class, commandRequest)
         .map(ResponseHelper::ok);
   }
 }

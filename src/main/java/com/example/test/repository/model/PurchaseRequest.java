@@ -36,4 +36,6 @@ public class PurchaseRequest extends BaseEntity {
   private PRStatus status;
 
   private String note;
+
+  private List<String> transactionIds;
 }
