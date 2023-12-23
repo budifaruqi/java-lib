@@ -30,4 +30,6 @@ public class BomProduction extends BaseEntity {
   private Long qty;
 
   private Long amount;
+
+  private Long amountTotal;
 }

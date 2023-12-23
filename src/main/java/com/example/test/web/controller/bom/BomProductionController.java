@@ -40,7 +40,7 @@ public class BomProductionController extends BaseController {
   @PostMapping
   public Mono<Response<Object>> createBomProduction(@RequestBody CreateBomProductionWebRequest request) {
     CreateBomProductionCommandRequest commandRequest = CreateBomProductionCommandRequest.builder()
-        .companyId("657aa8b5b89eb0426b0e52d3")
+        .companyId("6583df30dabc3c382a43ba8b")
         .bomId(request.getBomId())
         .qty(request.getQty())
         .build();

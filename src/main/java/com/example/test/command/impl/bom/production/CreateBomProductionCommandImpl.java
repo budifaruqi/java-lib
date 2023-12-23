@@ -54,16 +54,12 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
     return Mono.defer(() -> findBom(request))
         .flatMap(bom -> Mono.defer(() -> validateProduct(bom, request))
             .flatMap(product -> Mono.fromSupplier(() -> toBomProduction(bom, request, product))
-                .flatMap(bomProduction -> Mono.fromSupplier(() -> toTransaction(bomProduction, product))
+                .flatMap(bomProduction -> Mono.defer(() -> updateStock(bomProduction, request, bom))
+                    .flatMap(productStockRepository::save)
+                    .map(productStock -> toTransaction(bomProduction, product))
                     .flatMap(transactionRepository::save)
                     .map(newTransaction -> updateTransactionId(bomProduction, newTransaction)))
                 .flatMap(bomProductionRepository::save)));
-  }
-
-  private BomProduction updateTransactionId(BomProduction bomProduction, MainTransaction s) {
-    bomProduction.setTransactionId(s.getId());
-
-    return bomProduction;
   }
 
   private Mono<Bom> findBom(CreateBomProductionCommandRequest request) {
@@ -76,6 +72,17 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
         .flatMap(product -> Mono.defer(() -> validateMaterial(bom, request))
             .flatMap(productStocks -> Mono.fromSupplier(() -> getMaterialPrice(productStocks))
                 .map(price -> toProductRequest(request, price, product))));
+  }
+
+  private ProductRequest toProductRequest(CreateBomProductionCommandRequest request, Long price, Product product) {
+    return ProductRequest.builder()
+        .productId(product.getId())
+        .productName(product.getName())
+        .qty(request.getQty())
+        .unitOfMeasure(product.getUnitOfMeasure())
+        .price(price)
+        .totalPrice(price * request.getQty())
+        .build();
   }
 
   private Mono<Product> checkProduct(String productId, CreateBomProductionCommandRequest request) {
@@ -100,36 +107,28 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
   private Mono<ProductStock> checkStock(MaterialVO materialVO, CreateBomProductionCommandRequest request) {
     Long amountNeeded = materialVO.getQty() * request.getQty();
 
-    return productStockRepository.findByDeletedFalseAndId(materialVO.getProductId())
+    return productStockRepository.findByDeletedFalseAndCompanyIdAndProductId(request.getCompanyId(),
+            materialVO.getProductId())
         .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_STOCK_NOT_EXIST)))
         .filter(productStock -> productStock.getStock() >= amountNeeded)
         .switchIfEmpty(Mono.error(new ValidationException(ErrorCode.PRODUCT_STOCK_NOT_ENOUGH)))
-        .map(productStock -> updateStock(productStock, amountNeeded))
+        .map(productStock -> updateStockMaterial(productStock, amountNeeded))
         .flatMap(productStockRepository::save);
   }
 
-  private ProductStock updateStock(ProductStock productStock, Long amountNeeded) {
+  private ProductStock updateStockMaterial(ProductStock productStock, Long amountNeeded) {
     productStock.setStock(productStock.getStock() - amountNeeded);
 
     return productStock;
   }
 
   private Long getMaterialPrice(List<ProductStock> productStocks) {
-
+    System.out.println(productStocks.stream()
+        .mapToLong(ProductStock::getHpp)
+        .sum());
     return productStocks.stream()
         .mapToLong(ProductStock::getHpp)
         .sum();
-  }
-
-  private ProductRequest toProductRequest(CreateBomProductionCommandRequest request, Long price, Product product) {
-    return ProductRequest.builder()
-        .productId(product.getId())
-        .productName(product.getName())
-        .qty(request.getQty())
-        .unitOfMeasure(product.getUnitOfMeasure())
-        .price(price)
-        .totalPrice(price * request.getQty())
-        .build();
   }
 
   private BomProduction toBomProduction(Bom bom, CreateBomProductionCommandRequest request,
@@ -138,8 +137,37 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
         .companyId(request.getCompanyId())
         .bomId(bom.getId())
         .qty(request.getQty())
-        .amount(productRequest.getTotalPrice())
+        .amount(productRequest.getPrice())
+        .amountTotal(productRequest.getTotalPrice())
         .build();
+  }
+
+  private Mono<ProductStock> updateStock(BomProduction bomProduction, CreateBomProductionCommandRequest request,
+      Bom bom) {
+    return productStockRepository.findByDeletedFalseAndCompanyIdAndProductId(bomProduction.getCompanyId(),
+            bom.getProductId())
+        .switchIfEmpty(Mono.fromSupplier(() -> ProductStock.builder()
+            .productId(bom.getProductId())
+            .companyId(bomProduction.getCompanyId())
+            .stock(0L)
+            .hpp(0L)
+            .build()))
+        .map(productStock -> updateProductStock(productStock, bomProduction));
+  }
+
+  private ProductStock updateProductStock(ProductStock productStock, BomProduction bomProduction) {
+    productStock.setHpp(countHPP(productStock, bomProduction));
+    productStock.setStock(productStock.getStock() + bomProduction.getQty());
+
+    return productStock;
+  }
+
+  private Long countHPP(ProductStock productStock, BomProduction bomProduction) {
+    Long oldTotal = productStock.getHpp() * productStock.getStock();
+    Long newTotal = bomProduction.getAmount() * bomProduction.getQty();
+    Long amount = productStock.getStock() + bomProduction.getQty();
+
+    return (oldTotal + newTotal) / amount;
   }
 
   private MainTransaction toTransaction(BomProduction bomProduction, ProductRequest product) {
@@ -148,7 +176,13 @@ public class CreateBomProductionCommandImpl implements CreateBomProductionComman
         .productList(Collections.singletonList(product))
         .transactionScope(TransactionScope.INTERNAL)
         .transactionType(TransactionType.PRODUCTION)
-        .status(TransactionStatus.PROCESSED)
+        .status(TransactionStatus.CONFIRMED)
         .build();
+  }
+
+  private BomProduction updateTransactionId(BomProduction bomProduction, MainTransaction s) {
+    bomProduction.setTransactionId(s.getId());
+
+    return bomProduction;
   }
 }

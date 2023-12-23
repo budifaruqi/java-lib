@@ -22,6 +22,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ConfirmTransactionByIdCommandImpl implements ConfirmTransactionByIdCommand {
@@ -82,17 +83,23 @@ public class ConfirmTransactionByIdCommandImpl implements ConfirmTransactionById
             .flatMap(purchaseRequest1 -> Flux.fromIterable(purchaseRequest.getTransactionIds())
                 .flatMapSequential(this::findTransaction)
                 .collectList()
-                .map(this::checkStatus)
+                .map(transactionList -> checkStatus(transactionList, purchaseRequest))
                 .map(status -> toPR(status, purchaseRequest))
                 .flatMap(purchaseRequestRepository::save)));
   }
 
-  private boolean checkStatus(List<MainTransaction> transactionList) {
-    boolean status = transactionList.stream()
+  private boolean checkStatus(List<MainTransaction> transactionList, PurchaseRequest purchaseRequest) {
+    // Check transaction status
+    boolean transactionStatus = transactionList.stream()
         .allMatch(s -> s.getStatus() == TransactionStatus.CONFIRMED);
-    System.out.println(status);
 
-    return status;
+    // Check quantities
+    boolean quantitiesEqual = purchaseRequest.getProductList()
+        .stream()
+        .allMatch(productRequest -> Objects.equals(productRequest.getQty(), productRequest.getProcessedQty()));
+
+    // Combine the results
+    return transactionStatus && quantitiesEqual;
   }
 
   private PurchaseRequest toPR(Boolean status, PurchaseRequest purchaseRequest) {
