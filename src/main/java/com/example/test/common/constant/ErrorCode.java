@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ErrorCode {
 
+  public static final String AUTH_FAILED = "AUTH_FAILED";
+
   public static final String BOM_ALREADY_EXISTS = "BOM_ALREADY_EXISTS";
 
   public static final String BOM_NOT_EXIST = "BOM_NOT_EXIST";
