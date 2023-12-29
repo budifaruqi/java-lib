@@ -48,11 +48,23 @@ import java.util.Optional;
   @Bean
   @ConditionalOnClass(SwaggerAutoConfiguration.class)
   public OpenAPI openAPI(@Autowired(required = false) BuildProperties buildProperties) {
-    return (new OpenAPI()).addSecurityItem((new SecurityRequirement()).addList("auth", Collections.emptyList()))
-        .components((new Components()).addSecuritySchemes("auth", (new SecurityScheme()).scheme("bearer")
-            .type(SecurityScheme.Type.HTTP)))
-        .info((new Info()).title(getApplicationName(buildProperties))
-            .version(getApplicationVersion(buildProperties)));
+    SecurityScheme apiKeyScheme = new SecurityScheme()
+        .type(SecurityScheme.Type.APIKEY)
+        .in(SecurityScheme.In.HEADER)
+        .name("X-ASIS-COMPANYID")
+        .description("API Key for X-ASIS-COMPANYID");
+
+    return (new OpenAPI())
+        .addSecurityItem((new SecurityRequirement())
+            .addList("auth", Collections.emptyList()))
+        .addSecurityItem(new SecurityRequirement().addList("X-ASIS-COMPANYID", Collections.emptyList()))
+
+        .components((new Components())
+            .addSecuritySchemes("auth", (new SecurityScheme()).scheme("bearer")
+                .type(SecurityScheme.Type.HTTP))
+            .addSecuritySchemes("X-ASIS-COMPANYID", apiKeyScheme))
+        .info((new Info()).title(this.getApplicationName(buildProperties))
+            .version(this.getApplicationVersion(buildProperties)));
   }
 
   private String getApplicationName(BuildProperties buildProperties) {

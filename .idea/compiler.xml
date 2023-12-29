@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="data" />
+        <module name="test" />
+        <module name="aws-storage" />
+        <module name="web-client" />
+        <module name="session" />
+        <module name="command" />
+        <module name="swagger" />
+        <module name="security" />
+        <module name="common" />
+        <module name="web" />
+        <module name="kafka" />
+        <module name="mongodb" />
+        <module name="validation" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="aws-storage" options="-parameters" />
+      <module name="command" options="-parameters" />
+      <module name="common" options="-parameters" />
+      <module name="data" options="-parameters" />
+      <module name="kafka" options="-parameters" />
+      <module name="mongodb" options="-parameters" />
+      <module name="security" options="-parameters" />
+      <module name="session" options="-parameters" />
+      <module name="swagger" options="-parameters" />
+      <module name="test" options="-parameters" />
+      <module name="validation" options="-parameters" />
+      <module name="web" options="-parameters" />
+      <module name="web-client" options="-parameters" />
+    </option>
+  </component>
+</project>
