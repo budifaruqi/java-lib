@@ -1,0 +1,22 @@
+{
+  "name": "@budifaruqi/java-lib",
+  "version": "0.0.1",
+  "description": "parent dependency  ``` <dependency>   <groupId>com.solusinegeri</groupId>   <artifactId>java-lib</artifactId>   <version>0.0.1</version> </dependency>  ``` dependecy change. change all abinarystar dependency ```` <dependency>   <groupId>com.abinarystar.spring</groupId>   <artifactId>abinarystar-spring-parent</artifactId>   <version>0.5.13</version> </dependency> ```` -- into -- ```` <dependency>   <groupId>com.solusinegeri</groupId>   <artifactId>java-lib</artifactId>   <version>0.0.1</version> </dependency>  ````",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://budifaruqi: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@github.com/budifaruqi/java-lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/budifaruqi/java-lib/issues"
+  },
+  "homepage": "https://github.com/budifaruqi/java-lib#readme"
+}
