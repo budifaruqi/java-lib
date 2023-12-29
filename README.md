@@ -26,7 +26,7 @@ change all abinarystar dependency
 ````
 
 see package to see complete artifact list
->https://github.com/solusinegeri/java-lib/packages
+>https://github.com/budifaruqi/java-lib/packages
 
 in dockerfile change
 >RUN mvn -f /sources/pom.xml clean install --> RUN mvn -f /sources/pom.xml clean install -s /sources/settings.xml
@@ -37,8 +37,8 @@ add settings.xml file to project root
 ## add in pom.xml
 ````
 <repository>
-      <id>solusinegeri-java-lib</id>
-      <url>https://maven.pkg.github.com/solusinegeri/java-lib</url>
+      <id>budifaruqi-java-lib</id>
+      <url>https://maven.pkg.github.com/budifaruqi/java-lib</url>
       <releases>
         <checksumPolicy>ignore</checksumPolicy>
         <enabled>true</enabled>
