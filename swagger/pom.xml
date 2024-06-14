@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.solusinegeri</groupId>
     <artifactId>java-lib</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
 
   <artifactId>swagger</artifactId>
@@ -16,7 +16,7 @@
     <dependency>
       <groupId>com.solusinegeri</groupId>
       <artifactId>common</artifactId>
-      <version>0.0.2</version>
+      <version>0.0.3</version>
     </dependency>
     <!-- third party dependencies -->
     <dependency>

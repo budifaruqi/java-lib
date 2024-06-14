@@ -5,7 +5,7 @@
 
   <groupId>com.solusinegeri</groupId>
   <artifactId>java-lib</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <packaging>pom</packaging>
   <name>lib</name>
 
@@ -97,67 +97,67 @@
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>aws-storage</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>command</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>common</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>data</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>mongodb</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>kafka</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>security</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>session</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>swagger</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>test</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>validation</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>web</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <dependency>
         <groupId>com.solusinegeri</groupId>
         <artifactId>web-client</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
       </dependency>
       <!-- spring framework dependencies -->
       <dependency>
